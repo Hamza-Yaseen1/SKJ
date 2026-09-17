@@ -51,7 +51,7 @@ export default function Footer() {
               Pure Presence · est. 2026
             </p>
             <p className="mt-8 max-w-sm text-[15px] leading-8 text-cream/60">
-              Rare, high-concentration fragrances composed in Grasse for those
+              Rare, high-concentration fragrances composed in Pakistan for those
               who wear presence. Witness, not noise.
             </p>
             <div className="mt-10 flex items-center gap-4">
@@ -100,9 +100,9 @@ export default function Footer() {
                 <span>
                   SKJ House
                   <br />
-                  12 rue de la Parfumerie
+                  48 Gulberg Avenue
                   <br />
-                  06130 Grasse, Pakistan
+                  Karachi, Pakistan
                 </span>
               </p>
               <a
@@ -122,7 +122,7 @@ export default function Footer() {
             © {new Date().getFullYear()} SKJ Pure Presence. All rights reserved.
           </p>
           <p className="font-serif text-[15px] italic text-cream/60">
-            Composed in Grasse. Worn everywhere.
+            Composed in Pakistan. Worn everywhere.
           </p>
         </div>
       </div>

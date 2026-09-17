@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Minus, Plus, X } from "lucide-react";
+import Reveal from "@/components/Reveal";
 import { useCart } from "@/components/providers/CartProvider";
 import { formatPrice } from "@/lib/products";
 
@@ -36,6 +37,7 @@ export default function CartView() {
     return (
       <section className="flex min-h-[60svh] items-center bg-cream">
         <div className="container-luxe py-24 text-center md:py-32">
+          <Reveal>
           <div aria-hidden="true" className="mx-auto flex items-center gap-5">
             <span className="h-px w-12 bg-gold/40" />
             <span className="text-gold/60">✦</span>
@@ -47,10 +49,11 @@ export default function CartView() {
             <em className="italic text-gold"> a quiet beginning.</em>
           </h1>
           <p className="mx-auto mt-7 max-w-md text-base leading-8 text-bark">
-            The collection is ten extraits, composed by hand in Grasse.
+            The collection is six extraits, composed by hand in Pakistan.
             Begin where you linger — and the atelier will keep your selection
             safe whenever you return.
           </p>
+          </Reveal>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-x-8 gap-y-5">
             <Link href="/shop" className="btn btn-gold">
               Browse the collection
@@ -72,6 +75,7 @@ export default function CartView() {
     <section className="bg-cream">
       <div className="container-luxe py-16 md:py-24">
         {/* Heading */}
+        <Reveal>
         <div className="mb-12 flex flex-col justify-between gap-4 md:mb-16 md:flex-row md:items-end">
           <div>
             <p className="eyebrow mb-4">Your bag</p>
@@ -86,9 +90,11 @@ export default function CartView() {
             {items.length} {items.length === 1 ? "composition" : "compositions"}
           </p>
         </div>
+        </Reveal>
 
         <div className="grid gap-14 lg:grid-cols-[1fr_380px] lg:gap-16">
           {/* Line items */}
+          <Reveal delay={0.08}>
           <ul className="divide-y divide-ink/10 border-y border-ink/10">
             {items.map(({ product, size, quantity, lineTotal }) => {
               return (
@@ -173,9 +179,11 @@ export default function CartView() {
               );
             })}
           </ul>
+          </Reveal>
 
           {/* Summary */}
-          <aside className="h-fit lg:sticky lg:top-28">
+          <Reveal delay={0.16} className="h-fit lg:sticky lg:top-28">
+          <aside>
             <div className="border border-ink/10 bg-ivory p-8">
               <p className="eyebrow mb-8">Order summary</p>
 
@@ -210,6 +218,7 @@ export default function CartView() {
               </Link>
             </div>
           </aside>
+          </Reveal>
         </div>
       </div>
     </section>

@@ -7,10 +7,10 @@
  */
 
 export type Family =
-  | "Woody"
-  | "Floral"
+  | "Yaqoot"
+  | "White"
   | "Oriental"
-  | "Citrus"
+  | "Ghazi"
   | "Gourmand"
   | "Chypre"
   | "Green";
@@ -47,24 +47,20 @@ export interface Product {
   featured: boolean;
 }
 
-/** Unsplash photo — each source requests an optimum width at q=80. */
-const img = (id: string, w: number) =>
-  `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${w}&q=80`;
-
 /** The two house sizes, priced in PKR. */
 const sizes = (half: number, full: number): ProductSize[] => [
-  { id: "50ml", label: "50 ml", price: half },
-  { id: "100ml", label: "100 ml", price: full },
+  { id: "30ml", label: "30 ml", price: half },
+  { id: "50ml", label: "50 ml", price: full },
 ];
 
 export const products: Product[] = [
   {
     id: "p-01",
-    slug: "yaqoot",
+    slug: "yakoot",
     name: "Yaqoot",
-    family: "Woody",
+    family: "Yaqoot",
     concentration: "Extrait de Parfum",
-    sizes: sizes(6500, 11000),
+    sizes: sizes(1200, 2000),
     tag: "Bestseller",
     projection: "Rich",
     description:
@@ -74,7 +70,7 @@ export const products: Product[] = [
       heart: ["Damask Rose", "Labdanum", "Geranium"],
       base: ["Black Oud", "Smoked Cedar", "Vetiver", "Amber"],
     },
-    image: img("photo-1773527142301-9aa77252e5c2", 1600),
+    image: "/Images/yakoot/yakoot.jpg",
     featured: true,
   },
   {
@@ -83,7 +79,7 @@ export const products: Product[] = [
     name: "Legend",
     family: "Oriental",
     concentration: "Extrait de Parfum",
-    sizes: sizes(7500, 12500),
+    sizes: sizes(1200, 2000),
     tag: "Signature",
     projection: "Rich",
     description:
@@ -93,52 +89,16 @@ export const products: Product[] = [
       heart: ["Turkish Rose", "Jasmine Sambac", "Cinnamon"],
       base: ["Golden Amber", "Vanilla", "Tonka Bean", "Oud"],
     },
-    image: img("photo-1760920248537-c1185bbc5c61", 1600),
+    image: "/Images/Legend/abf7e7fb-d55f-4773-a333-cd379ac3fddc.jpg",
     featured: true,
   },
   {
     id: "p-03",
-    slug: "white",
-    name: "White",
-    family: "Floral",
-    concentration: "Eau de Parfum",
-    sizes: sizes(4500, 7500),
-    projection: "Subtle",
-    description:
-      "Pale, cinematic powder. Iris and heliotrope drift over a skin of white musk — a fragrance that whispers long after the room has gone quiet.",
-    notes: {
-      top: ["Aldehyde", "Pear", "Pink Pepper"],
-      heart: ["Iris", "Heliotrope", "Orange Blossom"],
-      base: ["White Musk", "Blonde Woods", "Vetiver"],
-    },
-    image: img("photo-1774682060910-ba9a26f958ad", 1600),
-    featured: true,
-  },
-  {
-    id: "p-04",
-    slug: "white-noor",
-    name: "White Noor",
-    family: "Floral",
-    concentration: "Eau de Parfum",
-    sizes: sizes(5200, 8800),
-    projection: "Moderate",
-    description:
-      "Light on white marble. Orange blossom and jasmine settle into soft musk and blonde woods — luminous, serene, quietly radiant.",
-    notes: {
-      top: ["Neroli", "Pear", "Green Mandarin"],
-      heart: ["Orange Blossom", "Jasmine Sambac", "Peony"],
-      base: ["White Musk", "Blonde Woods", "Ambergris"],
-    },
-    image: img("photo-1761329842950-f3551938e4da", 1600),
-    featured: false,
-  },
-  {
-    id: "p-05",
     slug: "ghazi",
     name: "Ghazi",
-    family: "Woody",
+    family: "Ghazi",
     concentration: "Extrait de Parfum",
-    sizes: sizes(8500, 14000),
+    sizes: sizes(1200, 2000),
     tag: "New",
     projection: "Rich",
     description:
@@ -148,16 +108,34 @@ export const products: Product[] = [
       heart: ["Oud", "Davana", "Leather"],
       base: ["Patchouli", "Vetiver", "Charred Cedar", "Musk"],
     },
-    image: img("photo-1763631403216-8d193008481e", 1600),
+    image: "/Images/ghazi/ghazi.jpg",
+    featured: true,
+  },
+  {
+    id: "p-04",
+    slug: "white-noor",
+    name: "White Noor",
+    family: "White",
+    concentration: "Eau de Parfum",
+    sizes: sizes(1200, 2000),
+    projection: "Moderate",
+    description:
+      "Light on white marble. Orange blossom and jasmine settle into soft musk and blonde woods — luminous, serene, quietly radiant.",
+    notes: {
+      top: ["Neroli", "Pear", "Green Mandarin"],
+      heart: ["Orange Blossom", "Jasmine Sambac", "Peony"],
+      base: ["White Musk", "Blonde Woods", "Ambergris"],
+    },
+    image: "/Images/White-noor/White_Noor_inspired_by_Musil.jpg",
     featured: false,
   },
   {
-    id: "p-06",
-    slug: "shaheen",
-    name: "Shaheen",
-    family: "Citrus",
+    id: "p-05",
+    slug: "icy-noor",
+    name: "Icy Noor",
+    family: "White",
     concentration: "Eau de Parfum",
-    sizes: sizes(3900, 6500),
+    sizes: sizes(1200, 2000),
     projection: "Moderate",
     description:
       "A cold Mediterranean morning. Bergamot and neroli over sun-warmed fig, drying into a clean white-musk caress that insists on summer.",
@@ -166,80 +144,27 @@ export const products: Product[] = [
       heart: ["Green Fig", "Orange Blossom", "Jasmine"],
       base: ["White Musk", "Cedar", "Ambergris"],
     },
-    image: img("photo-1768025719875-48ed072f3084", 1600),
+    image: "/Images/Icy-noor/icy-noor-3.jpg",
     featured: true,
   },
   {
-    id: "p-07",
-    slug: "sultan",
-    name: "Sultan",
-    family: "Gourmand",
-    concentration: "Extrait de Parfum",
-    sizes: sizes(6900, 11500),
-    tag: "Limited",
-    projection: "Rich",
-    description:
-      "The nightcap of the collection. Rum-drenched vanilla orchid and dried fig sit over warm leather and benzoin — dangerously good, impossibly indulgent.",
-    notes: {
-      top: ["Rum", "Cinnamon", "Cardamom"],
-      heart: ["Vanilla Orchid", "Tonka Bean", "Dried Fig"],
-      base: ["Benzoin", "Soft Leather", "Prune", "Amber"],
-    },
-    image: img("photo-1774682060992-46c7e9f2e50b", 1600),
-    featured: false,
-  },
-  {
-    id: "p-08",
-    slug: "heer",
-    name: "Heer",
-    family: "Gourmand",
-    concentration: "Extrait de Parfum",
-    sizes: sizes(5900, 9900),
-    projection: "Moderate",
-    description:
-      "A love letter in amber. Rose, saffron and honeyed amber melt into tonka and soft leather — devoted, warm, and impossible to forget.",
-    notes: {
-      top: ["Saffron", "Rose", "Pink Pepper"],
-      heart: ["Turkish Rose", "Honey", "Jasmine"],
-      base: ["Amber", "Tonka Bean", "Soft Leather", "Musk"],
-    },
-    image: img("photo-1774682060910-ba9a26f958ad", 1600),
-    featured: false,
-  },
-  {
-    id: "p-09",
-    slug: "chinar",
-    name: "Chinar",
-    family: "Green",
+    id: "p-06",
+    slug: "perfume-tester",
+    name: "Perfume Tester",
+    family: "Oriental",
     concentration: "Eau de Parfum",
-    sizes: sizes(3500, 5900),
+    sizes: [
+      { id: "10ml", label: "10 ml", price: 800 },
+    ],
     projection: "Subtle",
     description:
-      "The first green morning of the year. Crushed ivy and galbanum give way to wet tea leaf and lily of the valley — clean, exact, alive.",
+      "The house, unboxed. An essai flacon carrying the house extrait — poured to be sampled, worn and taken to task before you give it a permanent shelf.",
     notes: {
-      top: ["Green Mandarin", "Ivy", "Galbanum"],
-      heart: ["Lily of the Valley", "Tea Leaf", "Basil"],
-      base: ["White Musk", "Amberwood", "Wet Earth"],
+      top: ["Bergamot", "Saffron", "Pink Pepper"],
+      heart: ["Damask Rose", "Amber", "Cedar"],
+      base: ["Oud", "Vanilla", "Musk"],
     },
-    image: img("photo-1666621630026-862eea07236c", 1600),
-    featured: false,
-  },
-  {
-    id: "p-10",
-    slug: "bahadur",
-    name: "Bahadur",
-    family: "Chypre",
-    concentration: "Extrait de Parfum",
-    sizes: sizes(6200, 10500),
-    projection: "Intimate",
-    description:
-      "Old-world glamour, re-cut. Aldehydes fall over orris and violet before settling on oakmoss and sandalwood — like cashmere ash and gold dust.",
-    notes: {
-      top: ["Aldehyde", "Bergamot", "Peach"],
-      heart: ["Orris", "Violet", "Rose"],
-      base: ["Sandalwood", "Cashmeran", "Oakmoss", "Musk"],
-    },
-    image: img("photo-1609749282774-5883a366cdd1", 1600),
+    image: "/Images/Perfume-tester/0c7b951f-5463-42de-b41e-bb067b780bc0.jpg",
     featured: false,
   },
 ];

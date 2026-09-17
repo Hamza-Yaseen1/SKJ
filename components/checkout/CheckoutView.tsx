@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { ArrowLeft, Loader2, Lock } from "lucide-react";
+import Reveal from "@/components/Reveal";
 import { useCart } from "@/components/providers/CartProvider";
 import { formatPrice } from "@/lib/products";
 
@@ -120,6 +121,7 @@ export default function CheckoutView() {
     return (
       <section className="flex min-h-[60svh] items-center bg-cream">
         <div className="container-luxe py-24 text-center md:py-32">
+          <Reveal>
           <p className="eyebrow mb-6">Checkout</p>
           <h1 className="mx-auto max-w-2xl font-serif text-4xl leading-[1.05] text-ink md:text-6xl">
             Nothing to send <em className="italic text-gold">yet.</em>
@@ -128,6 +130,7 @@ export default function CheckoutView() {
             Your bag is empty — choose a composition first, then return to
             complete your order.
           </p>
+          </Reveal>
           <Link href="/shop" className="btn btn-gold mt-10">
             Browse the collection
           </Link>
@@ -192,6 +195,7 @@ export default function CheckoutView() {
     <section className="bg-cream">
       <div className="container-luxe py-16 md:py-24">
         <div className="mb-12 md:mb-16">
+          <Reveal>
           <Link
             href="/cart"
             className="mb-8 inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.16em] text-stone transition-colors hover:text-ink"
@@ -203,10 +207,12 @@ export default function CheckoutView() {
           <h1 className="font-serif text-4xl leading-[1.05] text-ink md:text-5xl">
             Where shall we <em className="italic text-gold">send it?</em>
           </h1>
+          </Reveal>
         </div>
 
         <div className="grid gap-14 lg:grid-cols-[1fr_400px] lg:gap-16">
           {/* ── Form ── */}
+          <Reveal delay={0.08} className="min-w-0">
           <form onSubmit={handleSubmit} noValidate id="checkout-form" aria-busy={submitting}>
             {submitError && (
               <div
@@ -341,9 +347,11 @@ export default function CheckoutView() {
               )}
             </button>
           </form>
+          </Reveal>
 
           {/* ── Order summary ── */}
-          <aside className="h-fit lg:sticky lg:top-28">
+          <Reveal delay={0.16} className="h-fit lg:sticky lg:top-28">
+          <aside>
             <div className="border border-ink/10 bg-ivory p-8 md:p-9">
               <p className="eyebrow mb-7">Your order</p>
 
@@ -415,6 +423,7 @@ export default function CheckoutView() {
               </p>
             </div>
           </aside>
+          </Reveal>
         </div>
       </div>
     </section>

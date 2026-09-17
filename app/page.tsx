@@ -1,35 +1,31 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import ProductCard from "@/components/ProductCard";
-import NewsletterForm from "@/components/NewsletterForm";
+import Reveal from "@/components/Reveal";
+import Hero from "@/components/Hero";
 import {
   getAllProducts,
   getFeaturedProducts,
   getProductBySlug,
 } from "@/lib/products";
+import { activeDeal } from "@/lib/deals";
 
 export const metadata: Metadata = {
   title: { absolute: "SKJ Pure Presence · Luxury Perfume" },
   description:
-    "SKJ Pure Presence composes rare, hand-filled extraits de parfum in Grasse — woody, floral, oriental and chypre fragrances for those who wear presence. Discover the collection.",
+    "SKJ Pure Presence composes rare, hand-filled extraits de parfum in Pakistan — woody, floral, oriental and chypre fragrances for those who wear presence. Discover the collection.",
   alternates: { canonical: "/" },
 };
 
 const MARQUEE_WORDS = [
-  "Grasse",
+  "Pakistan",
   "Extrait de parfum",
   "Hand-composed",
   "Exclusive",
   "Small batch",
   "Refillable flacon",
-];
-
-const HOUSE_FACTS: Array<[string, string]> = [
-  ["House", "Grasse, France"],
-  ["Compositions", "10 extraits"],
-  ["Concentration", "18–25% parfum"],
 ];
 
 const PRACTICES: Array<[string, string]> = [
@@ -43,68 +39,18 @@ export default function Home() {
   const lead = featured.find((product) => product.tag === "Signature") ?? featured[0]!;
   const rest = featured.filter((product) => product.id !== lead.id);
 
-  const philosophyImage = getProductBySlug("white")?.image ?? lead.image;
+  const philosophyImage = getProductBySlug("white-noor")?.image ?? lead.image;
 
   return (
     <>
       {/* ── Hero ── */}
-      <section className="relative flex min-h-[96svh] items-end overflow-hidden bg-ink">
-        <Image
-          // src={heroSrc}
-          src="/Images/Yakoot_by_SKJ_inspired_by_the_richness_of_Baccarat.jpg"
-
-          alt="SKJ Pure Presence extrait de parfum flacon in dark, cinematic light"
-          fill
-          sizes="100vw"
-          quality={80}
-          preload
-          className="object-cover opacity-60"
-        />
-        {/* Single monochrome scrim for legibility */}
-        <div
-          aria-hidden="true"
-          className="absolute inset-0 bg-gradient-to-t from-ink via-ink/40 to-ink/15"
-        />
-
-        <div className="container-luxe relative z-10 pb-16 pt-40 md:pb-24 md:pt-52">
-          <p className="eyebrow eyebrow-on-dark mb-8">
-            Pure Presence · Grasse · Est. 2026
-          </p>
-          <h1 className="max-w-4xl font-serif text-[3.25rem] leading-[0.98] text-cream sm:text-7xl lg:text-[6.25rem]">
-            The quietest
-            <br />
-            <em className="italic text-gold-light">form of power.</em>
-          </h1>
-          <p className="mt-8 max-w-lg text-base leading-8 text-cream/75 md:text-lg">
-            SKJ Pure Presence composes rare, high-concentration fragrances for those who
-            move through the world loudly — without saying a word.
-          </p>
-
-          <div className="mt-12 flex flex-wrap items-center gap-x-10 gap-y-6">
-            <Link href="/shop" className="btn btn-gold">
-              Discover the collection
-              <ArrowRight size={14} strokeWidth={1.5} aria-hidden="true" />
-            </Link>
-            <Link href="/about" className="text-link text-link-light text-cream">
-              Our philosophy
-            </Link>
-          </div>
-
-          {/* Mini index */}
-          <dl className="mt-16 flex max-w-2xl flex-wrap gap-x-12 gap-y-6 border-t border-cream/15 pt-8">
-            {HOUSE_FACTS.map(([k, v]) => (
-              <div key={k}>
-                <dt className="text-[10px] uppercase tracking-[0.16em] text-cream/45">
-                  {k}
-                </dt>
-                <dd className="mt-1.5 font-serif text-base italic text-cream/85">
-                  {v}
-                </dd>
-              </div>
-            ))}
-          </dl>
-        </div>
-      </section>
+      <Hero
+        slides={getAllProducts().map((product) => ({
+          image: product.image,
+          name: product.name,
+        }))}
+        count={getAllProducts().length}
+      />
 
       {/* ── Marquee ── */}
       <div
@@ -124,37 +70,72 @@ export default function Home() {
         </div>
       </div>
 
+      {/* ── Deal of the week banner ── */}
+      {activeDeal && (
+        <Reveal y={16}>
+          <section
+            aria-label="Deal of the week"
+            className="border-b border-gold/25 bg-charcoal"
+          >
+            <div className="container-luxe flex flex-col gap-6 py-10 md:flex-row md:items-center md:justify-between md:py-8">
+              <div className="flex items-center gap-6">
+                <span
+                  aria-hidden="true"
+                  className="hidden h-12 w-px bg-gold/40 sm:block"
+                />
+                <div>
+                  <p className="eyebrow eyebrow-on-dark">Deal of the week</p>
+                  <p className="mt-2 font-serif text-2xl text-cream md:text-3xl">
+                    {activeDeal.title}
+                  </p>
+                </div>
+              </div>
+              <Link href="/deals" className="text-link text-link-light text-cream">
+                View the deal
+                <ArrowUpRight size={14} strokeWidth={1.5} aria-hidden="true" />
+              </Link>
+            </div>
+          </section>
+        </Reveal>
+      )}
+
       {/* ── Featured collection ── */}
       <section className="bg-cream">
         <div className="container-luxe py-24 md:py-32">
-          <div className="flex flex-col justify-between gap-10 md:flex-row md:items-end">
-            <div className="max-w-md">
-              <p className="eyebrow mb-6">The edit</p>
-              <h2 className="font-serif text-4xl leading-[1.05] text-ink md:text-5xl">
-                Four signatures.
-                <br />
-                <em className="italic text-gold">One language.</em>
-              </h2>
-              <p className="mt-6 text-sm leading-7 text-bark">
-                The atelier&rsquo;s introduction — four extraits chosen for the
-                way they speak to one another, distilled from a wider
-                vocabulary of ten.
-              </p>
+          <Reveal>
+            <div className="flex flex-col justify-between gap-10 md:flex-row md:items-end">
+              <div className="max-w-md">
+                <p className="eyebrow mb-6">The edit</p>
+                <h2 className="font-serif text-4xl leading-[1.05] text-ink md:text-5xl">
+                  Four signatures.
+                  <br />
+                  <em className="italic text-gold">One language.</em>
+                </h2>
+                <p className="mt-6 text-sm leading-7 text-bark">
+                  The atelier&rsquo;s introduction — four extraits chosen for the
+                  way they speak to one another, distilled from a wider
+                  vocabulary of six.
+                </p>
+              </div>
+              <Link href="/shop" className="text-link">
+                View all {getAllProducts().length} fragrances
+                <ArrowUpRight size={14} strokeWidth={1.5} aria-hidden="true" />
+              </Link>
             </div>
-            <Link href="/shop" className="text-link">
-              View all {getAllProducts().length} fragrances
-              <ArrowUpRight size={14} strokeWidth={1.5} aria-hidden="true" />
-            </Link>
-          </div>
+          </Reveal>
 
           {/* Editorial layout — lead signature on the left, rest stacked right */}
           <div className="mt-16 grid gap-x-10 gap-y-14 md:grid-cols-12 md:items-start">
             <div className="md:col-span-7">
-              <ProductCard product={lead} />
+              <Reveal delay={0.05}>
+                <ProductCard product={lead} />
+              </Reveal>
             </div>
             <div className="grid gap-x-10 gap-y-14 sm:grid-cols-2 md:col-span-5 md:pt-24">
-              {rest.map((product) => (
-                <ProductCard key={product.id} product={product} />
+              {rest.map((product, i) => (
+                <Reveal key={product.id} delay={0.1 + i * 0.08}>
+                  <ProductCard product={product} />
+                </Reveal>
               ))}
             </div>
           </div>
@@ -164,7 +145,7 @@ export default function Home() {
       {/* ── Philosophy / The House ── */}
       <section className="bg-sand">
         <div className="container-luxe grid items-center gap-16 py-24 md:grid-cols-[0.9fr_1.1fr] md:gap-20 md:py-36">
-          <div className="relative">
+          <Reveal className="relative">
             <div
               aria-hidden="true"
               className="absolute -left-4 -top-4 hidden h-full w-full border border-gold/30 md:block"
@@ -172,7 +153,6 @@ export default function Home() {
             <div className="relative aspect-4/5 overflow-hidden bg-charcoal">
               <Image
                 src={philosophyImage}
-                // src="/Images/Yakoot_by_SKJ_inspired_by_the_richness_of_Baccarat.jpg"
                 alt="An SKJ flacon resting in soft morning light"
                 fill
                 sizes="(max-width: 768px) 100vw, 44vw"
@@ -182,11 +162,11 @@ export default function Home() {
             </div>
             <p className="mt-5 flex items-center gap-3 text-[11px] uppercase tracking-[0.16em] text-bark">
               <span aria-hidden="true" className="h-px w-10 bg-gold/60" />
-              Composed in Grasse
+              Composed in Pakistan
             </p>
-          </div>
+          </Reveal>
 
-          <div className="md:pl-4">
+          <Reveal delay={0.12} className="md:pl-4">
             <p className="eyebrow mb-8">The house</p>
             <blockquote className="font-serif text-2xl leading-[1.3] text-ink md:text-4xl md:leading-[1.15]">
               <span
@@ -203,7 +183,7 @@ export default function Home() {
             </blockquote>
             <p className="mt-8 max-w-md text-base leading-8 text-bark">
               We blend rare materials in small batches, at high concentration,
-              and in silence — the way an atelier should. Ten compositions for
+              and in silence — the way an atelier should. Six compositions for
               the moments that deserve more than a crowd.
             </p>
 
@@ -233,33 +213,11 @@ export default function Home() {
               Read the story
               <ArrowUpRight size={14} strokeWidth={1.5} aria-hidden="true" />
             </Link>
-          </div>
+          </Reveal>
         </div>
       </section>
 
-      {/* ── Newsletter CTA ── */}
-      <section className="bg-charcoal">
-        <div className="container-luxe flex flex-col items-center py-24 text-center md:py-32">
-          <div aria-hidden="true" className="flex items-center gap-5">
-            <span className="h-px w-14 bg-gold/30" />
-            <span className="text-gold/50">✦</span>
-            <span className="h-px w-14 bg-gold/30" />
-          </div>
-          <p className="eyebrow eyebrow-on-dark mt-9">The SKJ letters</p>
-          <h2 className="mt-5 max-w-2xl font-serif text-4xl leading-[1.1] text-cream md:text-5xl">
-            Notes on scent,
-            <br />
-            <em className="italic text-gold-light">sent rarely.</em>
-          </h2>
-          <p className="mt-6 max-w-md text-sm leading-7 text-cream/60">
-            New compositions, atelier stories and early access — a small
-            letter, seized from the noise of the world.
-          </p>
-          <div className="mt-10 flex w-full justify-center">
-            <NewsletterForm />
-          </div>
-        </div>
-      </section>
+      {/* ── Newsletter CTA removed — arrives with the collection release ── */}
     </>
   );
 }

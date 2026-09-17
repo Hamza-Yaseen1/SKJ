@@ -1,19 +1,20 @@
 import type { Metadata } from "next";
 import { ArrowUpRight } from "lucide-react";
 import ProductCard from "@/components/ProductCard";
+import Reveal from "@/components/Reveal";
 import { getAllProducts, Product } from "@/lib/products";
 
 export const metadata: Metadata = {
   title: "The Collection",
   description:
-    "Explore the full SKJ collection — ten extraits de parfum composed in Grasse across woody, floral, oriental, citrus, gourmand and chypre families.",
+    "Explore the full SKJ collection — six extraits et eaux de parfum composed in Pakistan across woody, floral, oriental, citrus, gourmand and chypre families.",
   alternates: { canonical: "/shop" },
   openGraph: {
     type: "website",
     url: "/shop",
     title: "The Collection · SKJ",
     description:
-      "Ten extraits de parfum composed by hand in Grasse across woody, floral, oriental, citrus, gourmand and chypre families.",
+      "Six extraits et eaux de parfum composed by hand in Pakistan across woody, floral, oriental, citrus, gourmand and chypre families.",
   },
 };
 
@@ -44,22 +45,24 @@ export default function Shop() {
       {/* ── Intro ── */}
       <section className="bg-cream">
         <div className="container-luxe pt-20 pb-16 text-center md:pt-28 md:pb-20">
-          <div aria-hidden="true" className="mx-auto flex items-center gap-5">
-            <span className="h-px w-12 bg-gold/40" />
-            <span className="text-gold/60">✦</span>
-            <span className="h-px w-12 bg-gold/40" />
-          </div>
-          <p className="eyebrow mt-8">The collection · Grasse</p>
-          <h1 className="mx-auto mt-6 max-w-3xl font-serif text-5xl leading-[1.02] text-ink md:text-7xl">
-            Ten compositions,
-            <br />
-            <em className="italic text-gold">one house.</em>
-          </h1>
-          <p className="mx-auto mt-8 max-w-xl text-base leading-8 text-bark">
-            Each extrait is composed by hand in Grasse and restricted to a
-            small yearly batch — so the choice can afford to be deliberate.
-            Begin where you linger.
-          </p>
+          <Reveal>
+            <div aria-hidden="true" className="mx-auto flex items-center gap-5">
+              <span className="h-px w-12 bg-gold/40" />
+              <span className="text-gold/60">✦</span>
+              <span className="h-px w-12 bg-gold/40" />
+            </div>
+            <p className="eyebrow mt-8">The collection · Pakistan</p>
+            <h1 className="mx-auto mt-6 max-w-3xl font-serif text-5xl leading-[1.02] text-ink md:text-7xl">
+              Six compositions,
+              <br />
+              <em className="italic text-gold">one house.</em>
+            </h1>
+            <p className="mx-auto mt-8 max-w-xl text-base leading-8 text-bark">
+              Each extrait is composed by hand in Pakistan and restricted to a
+              small yearly batch — so the choice can afford to be deliberate.
+              Begin where you linger.
+            </p>
+          </Reveal>
         </div>
       </section>
 
@@ -74,15 +77,17 @@ export default function Shop() {
           </div>
 
           <div className="grid grid-cols-1 gap-x-10 gap-y-20 sm:grid-cols-2 lg:grid-cols-3">
-            {ordered.map((product) => (
-              <ProductCard key={product.id} product={product} />
+            {ordered.map((product, i) => (
+              <Reveal key={product.id} delay={i * 0.07}>
+                <ProductCard product={product} />
+              </Reveal>
             ))}
           </div>
 
           <div className="mt-24 flex flex-col items-center gap-6 text-center">
             <span aria-hidden="true" className="h-px w-10 bg-gold/40" />
             <p className="text-[11px] uppercase tracking-[0.16em] text-stone">
-              Ten compositions — the archive closes here
+              Six compositions — the archive closes here
             </p>
           </div>
         </div>
@@ -91,7 +96,7 @@ export default function Shop() {
       {/* ── Discovery CTA ── */}
       <section className="bg-sand">
         <div className="container-luxe py-20 md:py-28">
-          <div className="mx-auto max-w-xl text-center">
+          <Reveal className="mx-auto max-w-xl text-center">
             <div aria-hidden="true" className="flex items-center justify-center gap-5">
               <span className="h-px w-12 bg-gold/40" />
               <span className="text-gold/60">✦</span>
@@ -116,7 +121,7 @@ export default function Shop() {
             <p className="mt-7 text-[11px] uppercase tracking-[0.16em] text-stone">
               Replies within one day, always
             </p>
-          </div>
+          </Reveal>
         </div>
       </section>
     </>

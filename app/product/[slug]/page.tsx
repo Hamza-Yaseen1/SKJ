@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { ArrowUpRight } from "lucide-react";
 import ProductCard from "@/components/ProductCard";
 import ProductPurchase from "@/components/ProductPurchase";
+import Reveal from "@/components/Reveal";
 import {
   getAllProducts,
   getProductBySlug,
@@ -86,7 +87,8 @@ export default async function ProductPage({ params }: PageProps) {
       <section className="bg-cream">
         <div className="container-luxe grid gap-14 py-14 md:grid-cols-2 md:gap-20 md:py-20">
           {/* Image */}
-          <div className="relative lg:sticky lg:top-32 lg:self-start">
+          <Reveal className="lg:sticky lg:top-32 lg:self-start">
+            <div className="relative">
             <div
               aria-hidden="true"
               className="absolute -left-4 -top-4 hidden h-full w-full border border-gold/25 md:block"
@@ -115,37 +117,43 @@ export default async function ProductPage({ params }: PageProps) {
             <div className="mt-5 flex items-center justify-between">
               <p className="flex items-center gap-3 text-[11px] uppercase tracking-[0.16em] text-stone">
                 <span aria-hidden="true" className="h-px w-8 bg-gold/50" />
-                Composed in Grasse
+                Composed in Pakistan
               </p>
               <p className="font-serif text-sm italic text-bark">
                 {product.family} extrait
               </p>
             </div>
           </div>
+          </Reveal>
 
           {/* Details */}
-          <ProductPurchase product={product} />
+          <Reveal delay={0.12}>
+            <ProductPurchase product={product} />
+          </Reveal>
         </div>
       </section>
 
       {/* ── Notes ── */}
       <section className="border-t border-ink/10 bg-ivory">
         <div className="container-luxe py-20 md:py-28">
-          <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
-            <div>
-              <p className="eyebrow mb-5">The composition</p>
-              <h2 className="max-w-md font-serif text-3xl text-ink md:text-4xl">
-                How <em className="italic text-gold">{product.name}</em> unfolds
-              </h2>
+          <Reveal>
+            <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
+              <div>
+                <p className="eyebrow mb-5">The composition</p>
+                <h2 className="max-w-md font-serif text-3xl text-ink md:text-4xl">
+                  How <em className="italic text-gold">{product.name}</em> unfolds
+                </h2>
+              </div>
+              <p className="max-w-xs text-sm leading-7 text-bark">
+                Each ingredient is chosen for what it surrenders on the skin —
+                and what it keeps for the hours after.
+              </p>
             </div>
-            <p className="max-w-xs text-sm leading-7 text-bark">
-              Each ingredient is chosen for what it surrenders on the skin —
-              and what it keeps for the hours after.
-            </p>
-          </div>
+          </Reveal>
 
           {/* Composition movements — an editorial table, not three cards */}
-          <ol className="mt-16">
+          <Reveal delay={0.1}>
+            <ol className="mt-16">
             {layers.map((layer, i) => (
               <li
                 key={layer.key}
@@ -184,6 +192,7 @@ export default async function ProductPage({ params }: PageProps) {
               </li>
             ))}
           </ol>
+          </Reveal>
 
           <div className="mt-16 flex flex-col items-center gap-6 text-center">
             <span aria-hidden="true" className="h-px w-10 bg-gold/40" />
@@ -197,22 +206,26 @@ export default async function ProductPage({ params }: PageProps) {
       {/* ── Related ── */}
       <section className="bg-cream">
         <div className="container-luxe py-20 md:py-28">
-          <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
-            <div>
-              <p className="eyebrow mb-5">Continue the composition</p>
-              <h2 className="font-serif text-3xl text-ink md:text-4xl">
-                Scent <em className="italic text-gold">in dialogue</em>
-              </h2>
+          <Reveal>
+            <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
+              <div>
+                <p className="eyebrow mb-5">Continue the composition</p>
+                <h2 className="font-serif text-3xl text-ink md:text-4xl">
+                  Scent <em className="italic text-gold">in dialogue</em>
+                </h2>
+              </div>
+              <Link href="/shop" className="text-link">
+                View all fragrances
+                <ArrowUpRight size={14} strokeWidth={1.5} aria-hidden="true" />
+              </Link>
             </div>
-            <Link href="/shop" className="text-link">
-              View all fragrances
-              <ArrowUpRight size={14} strokeWidth={1.5} aria-hidden="true" />
-            </Link>
-          </div>
+          </Reveal>
 
           <div className="mt-14 grid grid-cols-1 gap-x-10 gap-y-16 sm:grid-cols-2 lg:grid-cols-4">
-            {related.map((item) => (
-              <ProductCard key={item.id} product={item} />
+            {related.map((item, i) => (
+              <Reveal key={item.id} delay={i * 0.08}>
+                <ProductCard product={item} />
+              </Reveal>
             ))}
           </div>
         </div>

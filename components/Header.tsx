@@ -9,6 +9,7 @@ import { useCart } from "@/components/providers/CartProvider";
 const NAV_LINKS = [
   { label: "Home", href: "/" },
   { label: "Shop", href: "/shop" },
+  { label: "Deal of the Week", href: "/deals" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
 ];

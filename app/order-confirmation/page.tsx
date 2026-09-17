@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, Gem } from "lucide-react";
+import Reveal from "@/components/Reveal";
 
 export const metadata: Metadata = {
   title: "Order Confirmed",
@@ -22,7 +23,7 @@ const NEXT_STEPS = [
   },
   {
     title: "Composed & filled",
-    copy: "Hand-filled in Grasse and sealed within three working days.",
+    copy: "Hand-filled and sealed within three working days.",
   },
   {
     title: "Confirmation letter",
@@ -39,7 +40,8 @@ export default async function OrderConfirmationPage({ searchParams }: PageProps)
   return (
     <section className="flex min-h-[80svh] items-center bg-ink">
       <div className="container-luxe py-24 text-center md:py-32">
-        <div aria-hidden="true" className="mx-auto flex items-center gap-5">
+        <Reveal>
+          <div aria-hidden="true" className="mx-auto flex items-center gap-5">
           <span className="h-px w-12 bg-gold/40" />
           <span className="text-gold/60">✦</span>
           <span className="h-px w-12 bg-gold/40" />
@@ -56,9 +58,11 @@ export default async function OrderConfirmationPage({ searchParams }: PageProps)
             ? "A confirmation letter is already making its way to your inbox."
             : "The atelier will follow up with your confirmation letter by email."}
         </p>
+        </Reveal>
 
         {/* Order number */}
-        <div className="mx-auto mt-12 inline-flex flex-col items-center gap-3 border border-gold/40 px-10 py-8 md:px-14">
+        <Reveal delay={0.1}>
+          <div className="mx-auto mt-12 inline-flex flex-col items-center gap-3 border border-gold/40 px-10 py-8 md:px-14">
           <span className="text-[10px] uppercase tracking-[0.16em] text-cream/45">
             Order number
           </span>
@@ -66,8 +70,10 @@ export default async function OrderConfirmationPage({ searchParams }: PageProps)
             {orderNumber}
           </span>
         </div>
+        </Reveal>
 
         {/* What happens next — an editorial table, not cards */}
+        <Reveal delay={0.16}>
         <div className="mx-auto mt-16 max-w-2xl text-left md:mt-20">
           <div className="mb-2 flex items-center gap-4">
             <span aria-hidden="true" className="h-px w-8 bg-gold/40" />
@@ -98,10 +104,11 @@ export default async function OrderConfirmationPage({ searchParams }: PageProps)
           <div className="flex items-center gap-4 border-t border-white/10 pt-8">
             <span aria-hidden="true" className="h-px w-8 bg-gold/40" />
             <p className="font-serif text-base italic text-cream/60">
-              From Grasse to your door — with the tasting card, always.
+              From the atelier to your door — with the tasting card, always.
             </p>
           </div>
         </div>
+        </Reveal>
 
         <div className="mt-14 flex flex-wrap items-center justify-center gap-x-8 gap-y-4">
           <Link href="/shop" className="btn btn-gold">

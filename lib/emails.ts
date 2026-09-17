@@ -91,7 +91,7 @@ function lightShell(inner: string): string {
           <tr>
             <td style="padding:40px 48px 0;">
               <p style="margin:0;font-family:${SERIF};font-size:22px;letter-spacing:0.32em;color:${INK};text-align:center;">SKJ</p>
-              <p style="margin:10px 0 0;font-family:${SANS};font-size:10px;letter-spacing:0.34em;text-transform:uppercase;color:${BARK};text-align:center;">Pure Presence &middot; Grasse</p>
+              <p style="margin:10px 0 0;font-family:${SANS};font-size:10px;letter-spacing:0.34em;text-transform:uppercase;color:${BARK};text-align:center;">Pure Presence &middot; Pakistan</p>
             </td>
           </tr>
           <tr>
@@ -99,7 +99,7 @@ function lightShell(inner: string): string {
           </tr>
           <tr>
             <td style="padding:28px 48px;border-top:1px solid ${SAND};" bgcolor="#f2ecdf">
-              <p style="margin:0;font-family:${SANS};font-size:11px;line-height:1.8;color:${BARK};text-align:center;">Hand-filled in Grasse &middot; Refillable flacon &middot;<br />
+              <p style="margin:0;font-family:${SANS};font-size:11px;line-height:1.8;color:${BARK};text-align:center;">Hand-filled in Pakistan &middot; Refillable flacon &middot;<br />
               <span style="color:${GOLD};">atelier@skjpurepresence.com</span></p>
             </td>
           </tr>
@@ -244,6 +244,7 @@ export interface EmailDelivery {
 interface BrevoMessage {
   sender: { name: string; email: string };
   to: { email: string; name: string }[];
+  replyTo?: { email: string; name: string };
   subject: string;
   htmlContent: string;
 }
@@ -333,4 +334,55 @@ export async function sendOrderEmails(order: ResolvedOrder): Promise<EmailDelive
   });
 
   return { owner, customer };
+}
+
+/* ── Contact letters ── */
+
+export interface ContactMessage {
+  name: string;
+  email: string;
+  message: string;
+}
+
+export function contactLetterHtml(contact: ContactMessage): string {
+  const inner = `
+    <p style="margin:0;font-family:${SANS};font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:${GOLD};">Letter from the website</p>
+    <h1 style="margin:12px 0 0;font-family:${SERIF};font-size:28px;font-weight:500;line-height:1.1;color:${INK};">${escapeHtml(contact.name)}</h1>
+    <p style="margin:6px 0 0;font-family:${SANS};font-size:13px;color:${BARK};">${escapeHtml(contact.email)}</p>
+
+    <p style="margin:28px 0 0;padding:20px 24px;border-left:2px solid ${GOLD};background:${SAND};font-family:${SERIF};font-size:15px;font-style:italic;line-height:1.8;color:${INK};">${escapeHtml(contact.message).replace(/\n/g, "<br />")}</p>
+
+    <p style="margin:24px 0 0;font-family:${SANS};font-size:12px;line-height:1.8;color:${BARK};">Reply to ${escapeHtml(contact.email)} to reach this sender.</p>`;
+
+  return lightShell(inner);
+}
+
+/** Delivers a website contact letter to the atelier. Returns whether it was sent. */
+export async function sendContactLetter(
+  contact: ContactMessage
+): Promise<boolean> {
+  const { ownerEmail, emailFrom, emailDryRun } = siteConfig;
+
+  if (emailDryRun) return true;
+
+  if (!siteConfig.brevoApiKey) {
+    if (process.env.NODE_ENV !== "production") {
+      console.warn("[email] BREVO_API_KEY is not set — contact letter skipped");
+    }
+    return false;
+  }
+
+  try {
+    await sendBrevo({
+      sender: parseSender(emailFrom),
+      to: [{ email: ownerEmail, name: "SKJ Atelier" }],
+      replyTo: { email: contact.email, name: contact.name },
+      subject: `Letter from the website — ${contact.name}`,
+      htmlContent: contactLetterHtml(contact),
+    });
+    return true;
+  } catch (err) {
+    console.error("[email] failed to deliver contact letter:", err);
+    return false;
+  }
 }

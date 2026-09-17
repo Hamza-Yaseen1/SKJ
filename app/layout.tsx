@@ -42,13 +42,13 @@ export const metadata: Metadata = {
     siteName: "SKJ Pure Presence",
       title: "SKJ Pure Presence",
     description:
-      "Rare, high-concentration fragrances composed in Grasse for those who wear presence.",
+      "Rare, high-concentration fragrances composed in Pakistan for those who wear presence.",
   },
   twitter: {
     card: "summary_large_image",
       title: "SKJ Pure Presence",
     description:
-      "Rare, high-concentration fragrances composed in Grasse for those who wear presence.",
+      "Rare, high-concentration fragrances composed in Pakistan for those who wear presence.",
   },
   robots: {
     index: true,

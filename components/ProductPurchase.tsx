@@ -101,7 +101,7 @@ export default function ProductPurchase({ product }: { product: Product }) {
             <Droplets size={13} strokeWidth={1.5} aria-hidden="true" /> Refillable flacon
           </span>
           <span className="flex items-center gap-2">
-            <Gem size={13} strokeWidth={1.5} aria-hidden="true" /> Hand-filled in Grasse
+            <Gem size={13} strokeWidth={1.5} aria-hidden="true" /> Hand-filled in Pakistan
           </span>
           <span className="flex items-center gap-2">
             <Sparkles size={13} strokeWidth={1.5} aria-hidden="true" /> Cruelty-free
