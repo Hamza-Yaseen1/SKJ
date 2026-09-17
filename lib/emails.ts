@@ -6,11 +6,14 @@
  * Two messages for every order:
  *   1. Store owner  — full order details, subject "New Order – SKJ #<number>"
  *   2. Customer     — luxury confirmation, subject "Thank you for your order – SKJ"
+ *
+ * Delivered through the Brevo (Sendinblue) transactional email API.
  */
 
-import { Resend, type CreateEmailResponse } from "resend";
 import { siteConfig } from "@/lib/config";
 import type { ResolvedOrder } from "@/lib/orders";
+
+const BREVO_SMTP_URL = "https://api.brevo.com/v3/smtp/email";
 
 const INK = "#0a0a0a";
 const CREAM = "#f5f0e8";
@@ -56,7 +59,7 @@ function orderRowsHtml(order: ResolvedOrder): string {
         <tr>
           <td style="padding:14px 0;border-bottom:1px solid ${SAND};">
             <p style="margin:0;font-family:${SERIF};font-size:15px;color:${INK};">${escapeHtml(line.name)}</p>
-            <p style="margin:4px 0 0;font-family:${SANS};font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:${BARK};">Qty ${line.quantity} &middot; ${escapeHtml(line.size)}</p>
+            <p style="margin:4px 0 0;font-family:${SANS};font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:${BARK};">${escapeHtml(line.size)} &middot; ${formatMoney(line.unitPrice)} each &middot; Qty ${line.quantity}</p>
           </td>
           <td style="padding:14px 0;border-bottom:1px solid ${SAND};text-align:right;vertical-align:top;">
             <p style="margin:0;font-family:${SANS};font-size:14px;color:${INK};">${formatMoney(line.lineTotal)}</p>
@@ -138,7 +141,7 @@ export function ownerEmailHtml(order: ResolvedOrder): string {
 
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:32px 0 0;">
       <tr>
-        <td style="padding:10px 14px;background:${INK};;">
+        <td style="padding:10px 14px;background:${INK};">
           <p style="margin:0;font-family:${SANS};font-size:11px;letter-spacing:0.26em;text-transform:uppercase;color:${GOLD_LIGHT};">Customer &amp; shipping</p>
         </td>
       </tr>
@@ -231,65 +234,103 @@ export function customerEmailHtml(order: ResolvedOrder): string {
   return lightShell(inner);
 }
 
-/* ── Delivery ── */
+/* ── Brevo delivery ── */
 
 export interface EmailDelivery {
   owner: string | null;
   customer: string | null;
 }
 
+interface BrevoMessage {
+  sender: { name: string; email: string };
+  to: { email: string; name: string }[];
+  subject: string;
+  htmlContent: string;
+}
+
+/** Parses `"SKJ Pure Presence <orders@skjpurepresence.com>"` into name + email. */
+function parseSender(from: string): { name: string; email: string } {
+  const match = /^(.*?)\s*<([^>]+)>$/.exec(from);
+  const name = match?.[1]?.trim() || "SKJ Pure Presence";
+  const email = match?.[2]?.trim() || from.trim();
+  return { name, email };
+}
+
+async function sendBrevo(message: BrevoMessage): Promise<string> {
+  const { brevoApiKey } = siteConfig;
+  if (!brevoApiKey) {
+    throw new Error("BREVO_API_KEY is not set");
+  }
+
+  const response = await fetch(BREVO_SMTP_URL, {
+    method: "POST",
+    headers: {
+      accept: "application/json",
+      "api-key": brevoApiKey,
+      "content-type": "application/json",
+    },
+    body: JSON.stringify(message),
+  });
+
+  const body: unknown = await response.json().catch(() => null);
+
+  if (!response.ok) {
+    const detail =
+      (body as { message?: string } | null)?.message ??
+      `Brevo returned HTTP ${response.status}`;
+    throw new Error(detail);
+  }
+
+  const messageId = (body as { messageId?: string } | null)?.messageId;
+  return messageId ?? "sent";
+}
+
 export async function sendOrderEmails(order: ResolvedOrder): Promise<EmailDelivery> {
-  const { resendApiKey, emailDryRun, storeEmail, emailFrom } = siteConfig;
+  const { ownerEmail, emailFrom, emailDryRun } = siteConfig;
 
   if (emailDryRun) {
     return { owner: "dry-run", customer: "dry-run" };
   }
 
-  if (!resendApiKey) {
+  if (!siteConfig.brevoApiKey) {
     if (process.env.NODE_ENV !== "production") {
       console.warn(
-        "[email] RESEND_API_KEY is not set — emails skipped for",
+        "[email] BREVO_API_KEY is not set — emails skipped for",
         order.number
       );
     }
     return { owner: null, customer: null };
   }
 
-  const resend = new Resend(resendApiKey);
+  const sender = parseSender(emailFrom);
 
-  const [ownerResult, customerResult] = await Promise.allSettled([
-    resend.emails.send({
-      from: emailFrom,
-      to: [storeEmail],
-      subject: `New Order – SKJ #${order.number}`,
-      html: ownerEmailHtml(order),
-    }),
-    resend.emails.send({
-      from: emailFrom,
-      to: [order.contact.email],
-      subject: "Thank you for your order – SKJ",
-      html: customerEmailHtml(order),
-    }),
-  ]);
-
-  const deliver = (
+  const deliver = async (
     label: string,
-    result: PromiseSettledResult<CreateEmailResponse>
-  ) => {
-    if (result.status === "fulfilled" && result.value.data) {
-      return result.value.data.id ?? "sent";
+    message: BrevoMessage
+  ): Promise<string | null> => {
+    try {
+      return await sendBrevo(message);
+    } catch (err) {
+      console.error(
+        `[email] failed to deliver ${label} email for ${order.number}:`,
+        err
+      );
+      return null;
     }
-    const reason =
-      result.status === "rejected" ? result.reason : result.value.error;
-    console.error(
-      `[email] failed to deliver ${label} email for ${order.number}:`,
-      reason
-    );
-    return null;
   };
 
-  return {
-    owner: deliver("owner", ownerResult),
-    customer: deliver("customer", customerResult),
-  };
+  const owner = await deliver("owner", {
+    sender,
+    to: [{ email: ownerEmail, name: "SKJ Atelier" }],
+    subject: `New Order – SKJ #${order.number}`,
+    htmlContent: ownerEmailHtml(order),
+  });
+  const customer = await deliver("customer", {
+    sender,
+    to: [{ email: order.contact.email, name: order.contact.fullName }],
+    subject: "Thank you for your order – SKJ",
+    htmlContent: customerEmailHtml(order),
+  });
+
+  return { owner, customer };
 }

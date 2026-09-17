@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, ShoppingBag, X } from "lucide-react";
+import { useCart } from "@/components/providers/CartProvider";
 
 const NAV_LINKS = [
   { label: "Home", href: "/" },
@@ -15,6 +16,7 @@ const NAV_LINKS = [
 export default function Header() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const { count } = useCart();
 
   const isActive = (href: string) =>
     href === "/" ? pathname === "/" : pathname.startsWith(href);
@@ -26,10 +28,10 @@ export default function Header() {
         <Link
           href="/"
           className="flex items-baseline gap-2 text-cream transition-opacity hover:opacity-75"
-          aria-label="AETHER — Maison de Parfum, home"
+          aria-label="SKJ Pure Presence — home"
         >
           <span className="font-serif text-2xl tracking-[0.32em] md:text-[1.7rem] text-cream">
-            AETHER
+            SKJ
           </span>
           <span className="hidden h-px w-8 bg-gold/70 sm:block" aria-hidden="true" />
         </Link>
@@ -56,17 +58,25 @@ export default function Header() {
 
         {/* Right cluster */}
         <div className="flex items-center gap-3">
-          <button
-            type="button"
-            aria-label="Shopping bag — coming soon"
+          <Link
+            href="/cart"
+            aria-label={
+              count > 0
+                ? `Shopping bag, ${count} ${count === 1 ? "item" : "items"}`
+                : "Shopping bag — empty"
+            }
             className="group relative flex h-11 w-11 items-center justify-center rounded-full border border-white/10 text-cream transition-colors hover:border-gold"
           >
             <ShoppingBag size={18} strokeWidth={1.5} />
-            <span
-              aria-hidden="true"
-              className="absolute right-2 top-2 h-1.5 w-1.5 rounded-full bg-gold-light opacity-0 transition-opacity group-hover:opacity-100"
-            />
-          </button>
+            {count > 0 && (
+              <span
+                aria-hidden="true"
+                className="badge-pop absolute -right-0.5 -top-0.5 flex h-5 min-w-5 items-center justify-center rounded-full bg-gold px-1 text-[10px] font-medium leading-none text-ink"
+              >
+                {count > 99 ? "99+" : count}
+              </span>
+            )}
+          </Link>
 
           <button
             type="button"

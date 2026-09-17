@@ -15,11 +15,11 @@ export const siteConfig = {
   emailFrom: process.env.EMAIL_FROM ?? "SKJ Pure Presence <orders@skjpurepresence.com>",
 
   /** Where order notifications are delivered to the store owner. */
-  storeEmail: process.env.STORE_EMAIL ?? "atelier@skjpurepresence.com",
+  ownerEmail: process.env.OWNER_EMAIL ?? "atelier@skjpurepresence.com",
 
-  /** Resend API key. When unset, email sending is skipped (order still succeeds). */
-  resendApiKey: process.env.RESEND_API_KEY,
+  /** Brevo (formerly Sendinblue) API key. When unset, email sending is skipped (order still succeeds). */
+  brevoApiKey: process.env.BREVO_API_KEY,
 
-  /** Local/testing shortcut — fake-sends emails without touching Resend. */
+  /** Local/testing shortcut — fake-sends emails without touching Brevo. */
   emailDryRun: process.env.EMAIL_DRY_RUN === "true",
 } as const;
