@@ -1,26 +1,364 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ─────────────────────────────────────────────
+   SKJ Pure Presence
+   Design tokens (Tailwind v4 CSS-first theme)
+   ───────────────────────────────────────────── */
+
+@theme {
+  /* Core palette */
+  --color-ink: #0a0a0a;
+  --color-charcoal: #17140f;
+  --color-ivory: #faf7f1;
+  --color-cream: #f5f0e8;
+  --color-sand: #ece5d8;
+  --color-gold: #c9a227;
+  --color-gold-light: #d4af37;
+  --color-bark: #6e675c;
+  --color-stone: #8d8579;
+  --color-error: #9e3a34;
+
+  /* Type scale (letterspaced micro-labels) */
+  --text-micro: 0.6875rem;
+  --text-micro--letter-spacing: 0.16em;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* next/font applies these variables on <html> */
+  --font-serif: var(--font-serif);
+  --font-sans: var(--font-sans);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* ── Base ──  (in @layer base so Tailwind utilities can override) */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: var(--color-cream);
+    color: var(--color-ink);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: var(--color-gold);
+    color: var(--color-ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-gold);
+    outline-offset: 3px;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  button {
+    font: inherit;
+    color: inherit;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    margin: 0;
+    font-weight: inherit;
+  }
+
+  fieldset {
+    border: 0;
+    margin: 0;
+    padding: 0;
+    min-width: 0;
+  }
+
+  legend {
+    padding: 0;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  img,
+  svg {
+    display: block;
+    max-width: 100%;
+  }
+
+  /* Custom scrollbar — a quiet hairline */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-cream);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #c9c2b4;
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-gold);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ── Micro-label / eyebrow ── */
+.eyebrow {
+  font-family: var(--font-sans), system-ui, sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  line-height: 1.4;
+  text-transform: uppercase;
+  color: var(--color-gold);
+}
+
+/* Eyebrow variant for dark backgrounds — overrides the gold above. */
+.eyebrow-on-dark {
+  color: var(--color-gold-light);
+}
+
+/* ── Buttons ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-height: 52px;
+  padding: 0 30px;
+  font-family: var(--font-sans), system-ui, sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  transition:
+    background-color 220ms ease,
+    color 220ms ease,
+    border-color 220ms ease,
+    transform 220ms ease;
+}
+
+.btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+@media (hover: hover) {
+  .btn:not(:disabled):hover {
+    transform: translateY(-1px);
+  }
+  .btn-gold:not(:disabled):hover {
+    box-shadow: 0 18px 38px -20px rgba(201, 162, 39, 0.55);
+  }
+}
+
+.btn-gold {
+  background: var(--color-gold);
+  color: var(--color-ink);
+  border: 1px solid var(--color-gold);
+}
+
+.btn-gold:hover {
+  background: var(--color-gold-light);
+  border-color: var(--color-gold-light);
+}
+
+.btn-dark {
+  background: var(--color-ink);
+  color: var(--color-cream);
+  border: 1px solid var(--color-ink);
+}
+
+.btn-dark:hover {
+  background: var(--color-gold);
+  border-color: var(--color-gold);
+  color: var(--color-ink);
+}
+
+.btn-outline {
+  border: 1px solid color-mix(in srgb, var(--color-ink) 28%, transparent);
+  color: var(--color-ink);
+}
+
+.btn-outline:hover {
+  border-color: var(--color-ink);
+  background: var(--color-ink);
+  color: var(--color-cream);
+}
+
+.btn-outline-light {
+  border: 1px solid color-mix(in srgb, var(--color-cream) 42%, transparent);
+  color: var(--color-cream);
+}
+
+.btn-outline-light:hover {
+  border-color: var(--color-gold-light);
+  color: var(--color-gold-light);
+}
+
+.btn-block {
+  width: 100%;
+}
+
+/* ── Text link ── */
+.text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 7px;
+  border-bottom: 1px solid currentColor;
+  font-family: var(--font-sans), system-ui, sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  transition: color 220ms ease;
+}
+
+.text-link:hover {
+  color: var(--color-gold);
+}
+
+.text-link-light {
+  border-bottom-color: color-mix(in srgb, var(--color-cream) 50%, transparent);
+}
+
+.text-link-light:hover {
+  border-bottom-color: var(--color-gold-light);
+  color: var(--color-gold-light);
+}
+
+/* ── Nav micro-labels: cap wide tracking into a readable range.
+   Applies to the uppercase label links/meta inside the site header only;
+   overrides the wider arbitrary tracking utilities used there. ── */
+header nav a[class*="uppercase"],
+header nav span[class*="uppercase"] {
+  letter-spacing: 0.14em;
+}
+
+/* ── Image treatments ── */
+.img-zoom {
+  transition: transform 900ms cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.group:hover .img-zoom {
+  transform: scale(1.06);
+}
+
+/* Container */
+.container-luxe {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 1440px;
+  padding-inline: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .container-luxe {
+    padding-inline: 3rem;
+  }
+}
+
+/* ── Marquee ── */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-track {
+  animation: marquee 48s linear infinite;
+}
+
+/* ── Cart badge pop (subtle, premium) ── */
+@keyframes badge-pop {
+  0% {
+    transform: scale(0.82);
+    opacity: 0.6;
+  }
+  60% {
+    transform: scale(1.06);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.badge-pop {
+  animation: badge-pop 280ms cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+/* ── Luxury form inputs ── */
+.input-luxe {
+  width: 100%;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--color-ink) 25%, transparent);
+  border-radius: 0;
+  padding: 0.9rem 0;
+  font-family: var(--font-sans), system-ui, sans-serif;
+  font-size: 0.9375rem;
+  color: var(--color-ink);
+  caret-color: var(--color-gold);
+  transition: border-color 200ms ease, opacity 200ms ease;
+}
+
+.input-luxe:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.input-luxe::placeholder {
+  color: var(--color-stone);
+}
+
+.input-luxe:focus {
+  outline: none;
+  border-color: var(--color-gold);
+}
+
+.input-luxe[aria-invalid="true"] {
+  border-color: var(--color-error);
+}
+
+select.input-luxe {
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, var(--color-ink) 50%),
+    linear-gradient(135deg, var(--color-ink) 50%, transparent 50%);
+  background-position: calc(100% - 18px) 50%, calc(100% - 13px) 50%;
+  background-size: 5px 5px, 5px 5px;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+select.input-luxe option {
+  color: var(--color-ink);
+  background: var(--color-cream);
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
 }
