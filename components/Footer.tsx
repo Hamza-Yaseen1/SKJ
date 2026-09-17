@@ -100,9 +100,9 @@ export default function Footer() {
                 <span>
                   SKJ House
                   <br />
-                  Rue des Parfumeurs 12
+                  12 rue de la Parfumerie
                   <br />
-                  06130 Grasse, France
+                  06130 Grasse, Pakistan
                 </span>
               </p>
               <a
@@ -119,7 +119,7 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="mt-20 flex flex-col items-center justify-between gap-6 border-t border-white/10 pt-9 md:mt-24 md:flex-row">
           <p className="text-[11px] uppercase tracking-[0.14em] text-stone">
-            © {new Date().getFullYear()} SKJ Paris
+            © {new Date().getFullYear()} SKJ Pure Presence. All rights reserved.
           </p>
           <p className="font-serif text-[15px] italic text-cream/60">
             Composed in Grasse. Worn everywhere.

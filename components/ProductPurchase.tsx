@@ -92,7 +92,10 @@ export default function ProductPurchase({ product }: { product: Product }) {
       </fieldset>
 
       <div className="mt-9">
-        <AddToCartButton product={product} size={selected} />
+        <div className="grid gap-4 sm:grid-cols-2">
+          <AddToCartButton product={product} size={selected} />
+          <AddToCartButton product={product} size={selected} buyNow />
+        </div>
         <p className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3 border-t border-ink/10 pt-6 text-[11px] uppercase tracking-[0.16em] text-stone">
           <span className="flex items-center gap-2">
             <Droplets size={13} strokeWidth={1.5} aria-hidden="true" /> Refillable flacon

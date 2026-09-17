@@ -17,16 +17,6 @@ export const metadata: Metadata = {
   },
 };
 
-const FAMILY_ORDER = [
-  "Woody",
-  "Floral",
-  "Oriental",
-  "Citrus",
-  "Gourmand",
-  "Green",
-  "Chypre",
-] as const;
-
 const tagPriority = (product: Product): number => {
   switch (product.tag) {
     case "Signature":
@@ -44,11 +34,6 @@ const tagPriority = (product: Product): number => {
 
 export default function Shop() {
   const products = getAllProducts();
-
-  const byFamily = FAMILY_ORDER.reduce<Record<string, number>>((acc, family) => {
-    acc[family] = products.filter((p) => p.family === family).length;
-    return acc;
-  }, {});
 
   const ordered = [...products].sort(
     (a, b) => tagPriority(a) - tagPriority(b)
@@ -76,45 +61,6 @@ export default function Shop() {
             Begin where you linger.
           </p>
         </div>
-      </section>
-
-      {/* ── Filter bar (decorative until commerce) ── */}
-      <section className="border-y border-ink/10 bg-ivory">
-        <div className="container-luxe flex flex-col gap-6 py-8 md:flex-row md:items-center md:justify-between">
-          <p className="text-[11px] uppercase tracking-[0.16em] text-stone">
-            View by family
-          </p>
-          <ul
-            aria-label="Fragrance families — visual placeholder"
-            className="flex flex-wrap items-center gap-x-8 gap-y-3"
-          >
-            {["All", ...FAMILY_ORDER].map((family) => (
-              <li key={family}>
-                {family === "All" ? (
-                  <span className="cursor-default border-b border-gold pb-0.5 text-[11px] uppercase tracking-[0.16em] text-ink select-none">
-                    All
-                    <span className="ml-2 font-serif text-xs italic text-gold">
-                      · 10
-                    </span>
-                  </span>
-                ) : (
-                  <span className="cursor-default text-[11px] uppercase tracking-[0.16em] text-stone transition-colors select-none hover:text-ink">
-                    {family}
-                    <span className="ml-2 font-serif text-xs italic text-gold/80">
-                      · {byFamily[family]}
-                    </span>
-                  </span>
-                )}
-              </li>
-            ))}
-          </ul>
-          <p className="text-[11px] uppercase tracking-[0.16em] text-stone md:text-right">
-            {products.length} extraits
-          </p>
-        </div>
-        <p className="sr-only">
-          Filtering is a visual placeholder until commerce is wired in.
-        </p>
       </section>
 
       {/* ── Grid ── */}
