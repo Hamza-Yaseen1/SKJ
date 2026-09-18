@@ -289,6 +289,18 @@ The `ProductCard` and product pages already write: `"{Name} flacon — {Family} 
 | Atelier/production | `SKJ atelier in Karachi — a flacon being hand-filled with extrait de parfum` |
 | Refill | `Refillable perfume Pakistan — the SKJ flacon being replenished with essence` |
 
+**Editorial homepage blocks (implemented in `app/page.tsx`, using placeholder images):**
+
+| Section | Alt text (live) |
+| --- | --- |
+| The city | `SKJ Pure Presence extrait de parfum flacon, hand-filled at the atelier in Karachi` |
+| The concentration | `SKJ Pure Presence Legend extrait de parfum flacon, composed in Pakistan` |
+| The flacon | `Refillable perfume in Pakistan — SKJ Pure Presence crystal flacon at the Karachi atelier` |
+| For him | `SKJ Pure Presence Ghazi extrait de parfum flacon — long-lasting men's perfume in Pakistan` |
+| In good company | `SKJ Pure Presence White Noor flacon in soft natural light from the Karachi atelier` |
+
+> Placeholder image paths live at the top of `app/page.tsx` (`PLACEHOLDER_*` constants) — swap the strings when real photography arrives; alt text is already final.
+
 ---
 
 ## 9. Blog Post Titles (10) — with meta descriptions

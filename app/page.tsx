@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import type { ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
@@ -79,6 +80,79 @@ const FAQ_QUESTIONS: Array<{ q: string; a: string }> = [
     a: "Yes. SKJ ships to Karachi, Lahore, Islamabad, Rawalpindi, Faisalabad, Multan, Peshawar and Quetta, with complimentary delivery. Orders are hand-filled within three working days and confirmed by email with tracking.",
   },
 ];
+
+const PLACEHOLDER_YAKOOT = "/Images/yakoot/yakoot2.jpg";
+const PLACEHOLDER_LEGEND =
+  "/Images/Legend/abf7e7fb-d55f-4773-a333-cd379ac3fddc.jpg";
+const PLACEHOLDER_TESTER =
+  "/Images/Perfume-tester/0c7b951f-5463-42de-b41e-bb067b780bc0.jpg";
+const PLACEHOLDER_GHAZI = "/Images/ghazi/ghazi.jpg";
+const PLACEHOLDER_WHITE_NOOR = "/Images/White-noor/white-noor2.jpg";
+
+interface EditorialBlockProps {
+  eyebrow: string;
+  title: string;
+  image: string;
+  alt: string;
+  /** Flip the image to the left of the text on desktop. */
+  flip?: boolean;
+  action?: { href: string; label: string };
+  children: ReactNode;
+}
+
+/**
+ * Two-column editorial block — image opposite the copy, alternate sides on
+ * desktop, image-first on mobile. Images are placeholders until the real
+ * atelier photography lands.
+ */
+function EditorialBlock({
+  eyebrow,
+  title,
+  image,
+  alt,
+  flip = false,
+  action,
+  children,
+}: EditorialBlockProps) {
+  return (
+    <Reveal>
+      <div className="grid gap-10 border-t border-ink/10 py-12 md:grid-cols-[1.02fr_0.98fr] md:items-center md:gap-16">
+        {/* Text */}
+        <div className={`order-2 ${flip ? "md:order-2" : "md:order-1"}`}>
+          <p className="eyebrow">{eyebrow}</p>
+          <h3 className="mt-5 font-serif text-2xl text-ink md:text-3xl">
+            {title}
+          </h3>
+          <div className="mt-6 max-w-xl text-base leading-8 text-bark">
+            {children}
+          </div>
+          {action && (
+            <Link href={action.href} className="text-link mt-7">
+              {action.label}
+              <ArrowUpRight size={14} strokeWidth={1.5} aria-hidden="true" />
+            </Link>
+          )}
+        </div>
+
+        {/* Image — placeholder until real photography is supplied */}
+        <div
+          className={`order-1 relative aspect-4/5 overflow-hidden bg-sand ${
+            flip ? "md:order-1" : "md:order-2"
+          }`}
+        >
+          <Image
+            src={image}
+            alt={alt}
+            fill
+            sizes="(max-width: 768px) 100vw, 46vw"
+            quality={82}
+            className="img-zoom object-cover"
+          />
+        </div>
+      </div>
+    </Reveal>
+  );
+}
 
 export default function Home() {
   const featured = getFeaturedProducts();
@@ -362,156 +436,107 @@ export default function Home() {
 
           <div className="mt-16">
             {/* The city */}
-            <Reveal>
-              <div className="grid gap-8 border-t border-ink/10 py-12 md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] md:gap-16">
-                <p className="eyebrow">01 · The city</p>
-                <div>
-                  <h3 className="font-serif text-2xl text-ink md:text-3xl">
-                    The best perfume in Karachi, composed by hand
-                  </h3>
-                  <p className="mt-6 max-w-xl text-base leading-8 text-bark">
-                    Karachi gives a scent nothing for free. Humidity, heat and
-                    long evenings undo most perfumes by dinner — which is why an
-                    extrait de parfum, poured at 18–25% concentration, belongs
-                    here. SKJ Pure Presence composes for this particular light:
-                    rare botanicals worked slowly, in small batches, filled by
-                    hand at our Karachi atelier. Worn across Clifton, Zamzama
-                    and Gulberg, the collection holds through the afternoon and
-                    settles into evening without asking for attention. If you
-                    are searching for the best perfume in Karachi — one that
-                    lasts, refills and stays close — begin with the signature,{" "}
-                    <Link href="/product/legend" className="text-link">
-                      Legend
-                    </Link>
-                    , and let the rest of the house find you in time.
-                  </p>
-                  <Link href="/shop" className="text-link mt-7">
-                    Shop the collection
-                    <ArrowUpRight size={14} strokeWidth={1.5} aria-hidden="true" />
-                  </Link>
-                </div>
-              </div>
-            </Reveal>
+            <EditorialBlock
+              eyebrow="01 · The city"
+              title="The best perfume in Karachi, composed by hand"
+              image={PLACEHOLDER_YAKOOT}
+              alt="SKJ Pure Presence extrait de parfum flacon, hand-filled at the atelier in Karachi"
+              action={{ href: "/shop", label: "Shop the collection" }}
+            >
+              Karachi gives a scent nothing for free. Humidity, heat and long
+              evenings undo most perfumes by dinner — which is why an extrait de
+              parfum, poured at 18–25% concentration, belongs here. SKJ Pure
+              Presence composes for this particular light: rare botanicals
+              worked slowly, in small batches, filled by hand at our Karachi
+              atelier. Worn across Clifton, Zamzama and Gulberg, the collection
+              holds through the afternoon and settles into evening without
+              asking for attention. If you are searching for the best perfume in
+              Karachi — one that lasts, refills and stays close — begin with the
+              signature, <Link href="/product/legend" className="text-link">Legend</Link>
+              , and let the rest of the house find you in time.
+            </EditorialBlock>
 
             {/* The concentration */}
-            <Reveal>
-              <div className="grid gap-8 border-t border-ink/10 py-12 md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] md:gap-16">
-                <p className="eyebrow">02 · The concentration</p>
-                <div>
-                  <h3 className="font-serif text-2xl text-ink md:text-3xl">
-                    A luxury extrait de parfum, composed in Pakistan
-                  </h3>
-                  <p className="mt-6 max-w-xl text-base leading-8 text-bark">
-                    Most perfumes sold in Pakistan are eau de parfum, diluted
-                    for volume. An extrait is a different animal: 18–25% parfum,
-                    poured slowly, worn for hours. SKJ Pure Presence works in
-                    that rarefied register — the discipline of Grasse, balanced
-                    for Pakistani skin and climate. Rare woods, resins and
-                    flowers are blended in silence, in batches too small to be
-                    called a product. The result is a luxury extrait de parfum
-                    in Pakistan that behaves like a signature rather than a
-                    scent: it stays close when you need it, and blooms when you
-                    least expect it.
-                  </p>
-                  <Link href="/product/yakoot" className="text-link mt-7">
-                    Explore the extraction
-                    <ArrowUpRight size={14} strokeWidth={1.5} aria-hidden="true" />
-                  </Link>
-                </div>
-              </div>
-            </Reveal>
+            <EditorialBlock
+              eyebrow="02 · The concentration"
+              title="A luxury extrait de parfum, composed in Pakistan"
+              image={PLACEHOLDER_LEGEND}
+              alt="SKJ Pure Presence Legend extrait de parfum flacon, composed in Pakistan"
+              flip
+              action={{ href: "/product/yakoot", label: "Explore the extraction" }}
+            >
+              Most perfumes sold in Pakistan are eau de parfum, diluted for
+              volume. An extrait is a different animal: 18–25% parfum, poured
+              slowly, worn for hours. SKJ Pure Presence works in that rarefied
+              register — the discipline of Grasse, balanced for Pakistani skin
+              and climate. Rare woods, resins and flowers are blended in
+              silence, in batches too small to be called a product. The result
+              is a luxury extrait de parfum in Pakistan that behaves like a
+              signature rather than a scent: it stays close when you need it,
+              and blooms when you least expect it.
+            </EditorialBlock>
 
             {/* The flacon */}
-            <Reveal>
-              <div className="grid gap-8 border-t border-ink/10 py-12 md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] md:gap-16">
-                <p className="eyebrow">03 · The flacon</p>
-                <div>
-                  <h3 className="font-serif text-2xl text-ink md:text-3xl">
-                    Refillable perfume in Pakistan, made to be kept
-                  </h3>
-                  <p className="mt-6 max-w-xl text-base leading-8 text-bark">
-                    Most fragrance bottles are disposable by design. Ours are
-                    not. SKJ flacons are crystal and enamel, chosen to be kept,
-                    refilled and remembered. Refillable perfume in Pakistan is
-                    still rare, and it changes the relationship: you buy the
-                    composition once, then replenish the essence at a reduced
-                    price instead of buying a new bottle. It is kinder to the
-                    pocket, to the planet and to the scent itself. Every 30 ml
-                    and 50 ml SKJ flacon is refillable, hand-filled at the
-                    atelier and shipped across Pakistan with complimentary
-                    delivery. Keep the bottle. The essence will find you again.
-                  </p>
-                  <Link href="/shop" className="text-link mt-7">
-                    View the collection
-                    <ArrowUpRight size={14} strokeWidth={1.5} aria-hidden="true" />
-                  </Link>
-                </div>
-              </div>
-            </Reveal>
+            <EditorialBlock
+              eyebrow="03 · The flacon"
+              title="Refillable perfume in Pakistan, made to be kept"
+              image={PLACEHOLDER_TESTER}
+              alt="Refillable perfume in Pakistan — SKJ Pure Presence crystal flacon at the Karachi atelier"
+              action={{ href: "/shop", label: "View the collection" }}
+            >
+              Most fragrance bottles are disposable by design. Ours are not. SKJ
+              flacons are crystal and enamel, chosen to be kept, refilled and
+              remembered. Refillable perfume in Pakistan is still rare, and it
+              changes the relationship: you buy the composition once, then
+              replenish the essence at a reduced price instead of buying a new
+              bottle. It is kinder to the pocket, to the planet and to the scent
+              itself. Every 30 ml and 50 ml SKJ flacon is refillable, hand-filled
+              at the atelier and shipped across Pakistan with complimentary
+              delivery. Keep the bottle. The essence will find you again.
+            </EditorialBlock>
 
             {/* For him */}
-            <Reveal>
-              <div className="grid gap-8 border-t border-ink/10 py-12 md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] md:gap-16">
-                <p className="eyebrow">04 · For him</p>
-                <div>
-                  <h3 className="font-serif text-2xl text-ink md:text-3xl">
-                    Best perfume for men in Pakistan, priced in PKR
-                  </h3>
-                  <p className="mt-6 max-w-xl text-base leading-8 text-bark">
-                    A men&rsquo;s perfume in Pakistan has to earn its place through
-                    heat and heavier days. SKJ&rsquo;s answer is a small edit of
-                    extraits built for the long wear:{" "}
-                    <Link href="/product/ghazi" className="text-link">
-                      Ghazi
-                    </Link>{" "}
-                    — oud, smoke and leather, softened by davana — for the
-                    worn-in hour;{" "}
-                    <Link href="/product/yakoot" className="text-link">
-                      Yaqoot
-                    </Link>{" "}
-                    — smoked cedar, black oud and saffron over a bruised rose —
-                    for the evening;{" "}
-                    <Link href="/product/legend" className="text-link">
-                      Legend
-                    </Link>{" "}
-                    — molten amber and vanilla — for the nights worth gifting.
-                    All three pour at 18–25% parfum, are hand-filled in Karachi
-                    and start from Rs. 1,200. If you want the best perfume for
-                    men in Pakistan without the crowd on your shoulder, this is
-                    the edit the atelier recommends.
-                  </p>
-                </div>
-              </div>
-            </Reveal>
+            <EditorialBlock
+              eyebrow="04 · For him"
+              title="Best perfume for men in Pakistan, priced in PKR"
+              image={PLACEHOLDER_GHAZI}
+              alt="SKJ Pure Presence Ghazi extrait de parfum flacon — long-lasting men's perfume in Pakistan"
+              flip
+            >
+              A men&rsquo;s perfume in Pakistan has to earn its place through
+              heat and heavier days. SKJ&rsquo;s answer is a small edit of extraits
+              built for the long wear:{" "}
+              <Link href="/product/ghazi" className="text-link">Ghazi</Link> —
+              oud, smoke and leather, softened by davana — for the worn-in hour;{" "}
+              <Link href="/product/yakoot" className="text-link">Yaqoot</Link> —
+              smoked cedar, black oud and saffron over a bruised rose — for the
+              evening; <Link href="/product/legend" className="text-link">Legend</Link>{" "}
+              — molten amber and vanilla — for the nights worth gifting. All
+              three pour at 18–25% parfum, are hand-filled in Karachi and start
+              from Rs. 1,200. If you want the best perfume for men in Pakistan
+              without the crowd on your shoulder, this is the edit the atelier
+              recommends.
+            </EditorialBlock>
 
             {/* In good company */}
-            <Reveal>
-              <div className="grid gap-8 border-t border-ink/10 py-12 md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] md:gap-16">
-                <p className="eyebrow">05 · In good company</p>
-                <div>
-                  <h3 className="font-serif text-2xl text-ink md:text-3xl">
-                    For those who love J. Perfumes, Lattafa and Janan
-                  </h3>
-                  <p className="mt-6 max-w-xl text-base leading-8 text-bark">
-                    J. Perfumes, Lattafa and Janan built modern fragrance
-                    culture in Pakistan, and they remain the doorway for most
-                    collectors. SKJ Pure Presence holds the same inheritance —
-                    Middle Eastern opulence, French discipline — with one
-                    difference: discipline. Where those houses pour eau de
-                    parfum at volume, SKJ works small, at 18–25% extrait
-                    concentration, with refillable flacons filled by hand in
-                    Karachi. Loyal to J. and Lattafa? Meet them at the same
-                    register — richer, longer, quieter. And because every SKJ
-                    composition is a variation rather than an imitation, it is a
-                    natural next step for anyone weaned on Janan.
-                  </p>
-                  <Link href="/product/legend" className="text-link mt-7">
-                    Compare the signatures
-                    <ArrowUpRight size={14} strokeWidth={1.5} aria-hidden="true" />
-                  </Link>
-                </div>
-              </div>
-            </Reveal>
+            <EditorialBlock
+              eyebrow="05 · In good company"
+              title="For those who love J. Perfumes, Lattafa and Janan"
+              image={PLACEHOLDER_WHITE_NOOR}
+              alt="SKJ Pure Presence White Noor flacon in soft natural light from the Karachi atelier"
+              action={{ href: "/product/legend", label: "Compare the signatures" }}
+            >
+              J. Perfumes, Lattafa and Janan built modern fragrance culture in
+              Pakistan, and they remain the doorway for most collectors. SKJ
+              Pure Presence holds the same inheritance — Middle Eastern
+              opulence, French discipline — with one difference: discipline.
+              Where those houses pour eau de parfum at volume, SKJ works small,
+              at 18–25% extrait concentration, with refillable flacons filled
+              by hand in Karachi. Loyal to J. and Lattafa? Meet them at the same
+              register — richer, longer, quieter. And because every SKJ
+              composition is a variation rather than an imitation, it is a
+              natural next step for anyone weaned on Janan.
+            </EditorialBlock>
           </div>
         </div>
       </section>
