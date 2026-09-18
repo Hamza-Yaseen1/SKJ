@@ -5,9 +5,10 @@ import Reveal from "@/components/Reveal";
 import { getAllProducts, getProductBySlug } from "@/lib/products";
 
 export const metadata: Metadata = {
-  title: "The House",
+  title: "About SKJ Pure Presence | The House, Karachi",
   description:
-    "SKJ Pure Presence was born in Pakistan from a single unfinished sentence. The story of a maison de parfum built on concentration, rarity and restraint.",
+    "Born in Pakistan from a single unfinished sentence. The story of SKJ Pure Presence — a maison de parfum built on concentration, rarity and restraint.",
+  alternates: { canonical: "/about" },
 };
 
 const VALUES = [

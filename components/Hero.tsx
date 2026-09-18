@@ -102,9 +102,9 @@ export default function Hero({ slides, count }: HeroProps) {
           {...fade(0.12)}
           className="max-w-4xl font-serif text-[3.25rem] leading-[0.98] text-cream sm:text-7xl lg:text-[6.25rem]"
         >
-          The quietest
+          SKJ Pure Presence.
           <br />
-          <em className="italic text-gold-light">form of power.</em>
+          <em className="italic text-gold-light">The quietest form of power.</em>
         </motion.h1>
         <motion.p
           {...fade(0.24)}

@@ -23,32 +23,40 @@ const geist = Geist({
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.siteUrl),
   title: {
-    default: "SKJ Pure Presence",
-    template: "%s · SKJ",
+    default: "SKJ Pure Presence | Best Perfume in Karachi, Pakistan",
+    template: "%s · SKJ Pure Presence",
   },
   description:
-    "SKJ Pure Presence composes rare, high-concentration fragrances for those who wear presence. Discover the collection — woody, floral, oriental and beyond.",
+    "SKJ Pure Presence composes hand-filled extraits de parfum in Pakistan. Refillable, cruelty-free, 18–25% parfum. Discover the best perfume in Karachi.",
   keywords: [
-    "luxury perfume",
-    "niche fragrance",
-    "extrait de parfum",
     "SKJ Pure Presence",
+    "best perfume in Karachi",
+    "luxury perfume Pakistan",
+    "extrait de parfum",
+    "refillable perfume Pakistan",
+    "best perfume for men in Pakistan",
+    "long lasting perfume Pakistan",
+    "SKJ perfume",
+    "SKJ Pure Presence Karachi",
+    "niche fragrance",
     "maison de parfum",
+    "perfume like j. perfumes",
+    "high concentration perfume Pakistan",
   ],
   openGraph: {
     type: "website",
-    locale: "en_GB",
+    locale: "en_PK",
     url: "/",
     siteName: "SKJ Pure Presence",
-      title: "SKJ Pure Presence",
+    title: "SKJ Pure Presence | Best Perfume in Karachi, Pakistan",
     description:
-      "Rare, high-concentration fragrances composed in Pakistan for those who wear presence.",
+      "Hand-filled extraits de parfum composed in Pakistan — refillable, cruelty-free, 18–25% parfum. The best perfume in Karachi.",
   },
   twitter: {
     card: "summary_large_image",
-      title: "SKJ Pure Presence",
+    title: "SKJ Pure Presence | Best Perfume in Karachi, Pakistan",
     description:
-      "Rare, high-concentration fragrances composed in Pakistan for those who wear presence.",
+      "Hand-filled extraits de parfum composed in Pakistan — refillable, cruelty-free, 18–25% parfum.",
   },
   robots: {
     index: true,

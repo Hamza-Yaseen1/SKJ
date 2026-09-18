@@ -5,9 +5,10 @@ import ContactForm from "@/components/contact/ContactForm";
 import Reveal from "@/components/Reveal";
 
 export const metadata: Metadata = {
-  title: "Contact",
+  title: "Contact the SKJ Atelier | Karachi, Pakistan",
   description:
-    "Reach the SKJ atelier — for guidance, press, private commissions, or simply to begin a conversation.",
+    "Reach the SKJ atelier in Karachi — fragrance guidance, press, private commissions, or simply to begin a conversation.",
+  alternates: { canonical: "/contact" },
 };
 
 const DETAILS = [

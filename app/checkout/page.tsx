@@ -2,9 +2,10 @@ import type { Metadata } from "next";
 import CheckoutView from "@/components/checkout/CheckoutView";
 
 export const metadata: Metadata = {
-  title: "Checkout",
+  title: "Checkout | SKJ Pure Presence",
   description:
-    "A considered checkout — share your address and confirm your SKJ order. No payment is taken online.",
+    "Complete your SKJ order — complimentary shipping across Pakistan, confirmation by email. No payment is taken online.",
+  robots: { index: false },
 };
 
 export default function CheckoutPage() {

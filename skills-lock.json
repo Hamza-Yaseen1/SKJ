@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "skills": {
+    "claude-seo-workflows": {
+      "source": "composio-community/opencode-skills",
+      "sourceType": "github",
+      "skillPath": "skills/claude-seo-workflows/SKILL.md",
+      "computedHash": "df38f09f68232258c8d1309efad12fd934954ace5d3bec41e5c1c64604bfa320"
+    }
+  }
+}

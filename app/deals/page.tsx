@@ -25,9 +25,9 @@ const openGraph = activeDeal
   : undefined;
 
 export const metadata: Metadata = {
-  title: "Deal of the Week",
+  title: "Deal of the Week | SKJ Perfume Promotions in Pakistan",
   description:
-    "The current SKJ Pure Presence promotion — a considered gesture from the atelier.",
+    "The current SKJ Pure Presence promotion — a considered gesture from the atelier. Buy 1 Get 1 Free: any 100 ml extrait, a 50 ml free.",
   alternates: { canonical: "/deals" },
   openGraph,
 };

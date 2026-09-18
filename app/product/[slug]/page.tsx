@@ -11,6 +11,7 @@ import {
   getProductBySlug,
   getRelatedProducts,
 } from "@/lib/products";
+import { siteConfig } from "@/lib/config";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -24,21 +25,45 @@ export function generateStaticParams() {
 /** Anything outside the catalogue is a 404. */
 export const dynamicParams = false;
 
+/** Keep a meta description within Google's 150–160 char window. */
+function truncate(text: string, max = 128): string {
+  const clean = text.trim().replace(/\s+/g, " ");
+  if (clean.length <= max) return clean;
+  return `${clean.slice(0, max - 1).trimEnd()}…`;
+}
+
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const product = getProductBySlug(slug);
 
+  if (!product) {
+    return {
+      title: "Fragrance",
+      description: "An SKJ Pure Presence fragrance, composed in Pakistan.",
+      robots: { index: false },
+    };
+  }
+
+  const title = `${product.name} ${product.concentration} | SKJ Pakistan`;
+  const description = `${product.name}: ${truncate(product.description, 120)} Composed in Pakistan.`;
+  const url = `/product/${slug}`;
+
   return {
-    title: product ? product.name : "Fragrance",
-    description: product?.description,
-    alternates: { canonical: `/product/${slug}` },
+    title,
+    description,
+    alternates: { canonical: url },
     openGraph: {
       type: "website",
-      url: `/product/${slug}`,
+      url,
       siteName: "SKJ Pure Presence",
-      title: product ? `${product.name} · SKJ` : "SKJ",
-      description: product?.description,
-      images: product ? [{ url: product.image, alt: product.name }] : [],
+      title,
+      description,
+      images: [
+        {
+          url: `${siteConfig.siteUrl}${product.image}`,
+          alt: `${product.name} flacon — ${product.family} extrait de parfum`,
+        },
+      ],
     },
   };
 }
@@ -49,6 +74,47 @@ export default async function ProductPage({ params }: PageProps) {
 
   if (!product) notFound();
 
+  const site = siteConfig.siteUrl;
+  const pageUrl = `${site}/product/${product.slug}`;
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Product",
+        "@id": `${pageUrl}#product`,
+        name: product.name,
+        brand: { "@type": "Brand", name: "SKJ Pure Presence" },
+        sku: product.id,
+        image: [`${site}${product.image}`],
+        description: `${product.description} ${product.concentration}, composed in Pakistan.`,
+        category: product.family,
+        offers: product.sizes.map((size) => ({
+          "@type": "Offer",
+          name: `${product.name} — ${size.label}`,
+          price: size.price,
+          priceCurrency: "PKR",
+          availability: "https://schema.org/InStock",
+          itemCondition: "https://schema.org/NewCondition",
+          url: pageUrl,
+        })),
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${pageUrl}#breadcrumb`,
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: site },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "Collection",
+            item: `${site}/shop`,
+          },
+          { "@type": "ListItem", position: 3, name: product.name, item: pageUrl },
+        ],
+      },
+    ],
+  };
+
   const related = getRelatedProducts(product);
   const layers: Array<{ key: "top" | "heart" | "base"; label: string; note: string }> = [
     { key: "top", label: "Top notes", note: "The greeting" },
@@ -57,6 +123,14 @@ export default async function ProductPage({ params }: PageProps) {
   ];
   return (
     <>
+      {/* ── Structured data: Product + Breadcrumb ── */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
+        }}
+      />
+
       {/* ── Breadcrumb ── */}
       <nav
         aria-label="Breadcrumb"

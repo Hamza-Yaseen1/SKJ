@@ -11,12 +11,23 @@ import {
   getProductBySlug,
 } from "@/lib/products";
 import { activeDeal } from "@/lib/deals";
+import { siteConfig } from "@/lib/config";
 
 export const metadata: Metadata = {
-  title: { absolute: "SKJ Pure Presence · Luxury Perfume" },
+  title: {
+    absolute: "SKJ Pure Presence | Best Perfume in Karachi, Pakistan",
+  },
   description:
-    "SKJ Pure Presence composes rare, hand-filled extraits de parfum in Pakistan — woody, floral, oriental and chypre fragrances for those who wear presence. Discover the collection.",
+    "SKJ Pure Presence composes hand-filled extraits de parfum in Pakistan. Refillable, cruelty-free, 18–25% parfum. Discover the best perfume in Karachi.",
   alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    url: "/",
+    siteName: "SKJ Pure Presence",
+    title: "SKJ Pure Presence | Best Perfume in Karachi, Pakistan",
+    description:
+      "Hand-filled extraits de parfum composed in Pakistan — refillable, cruelty-free, 18–25% parfum.",
+  },
 };
 
 const MARQUEE_WORDS = [
@@ -34,12 +45,131 @@ const PRACTICES: Array<[string, string]> = [
   ["Cruelty-free", "Responsible sourcing, always"],
 ];
 
+const FAQ_QUESTIONS: Array<{ q: string; a: string }> = [
+  {
+    q: "Where to buy SKJ Pure Presence in Karachi?",
+    a: "Directly on this website, with complimentary shipping across Karachi — Clifton, DHA, Zamzama and Gulberg included. The atelier in Karachi also welcomes visits by appointment, Thursday to Saturday. For guidance before you buy, write to atelier@skjpurepresence.com.",
+  },
+  {
+    q: "Is SKJ perfume better than j. perfumes?",
+    a: "Better is a matter of taste; the difference is measurable. J. Perfumes is a reliable, affordable eau de parfum house. SKJ is a small-batch extraction house — 18–25% parfum concentration, hand-filled in Karachi, refillable and cruelty-free. If longevity and intensity matter most, SKJ is designed for them.",
+  },
+  {
+    q: "What is the price of SKJ extrait de parfum in Pakistan?",
+    a: "The 30 ml extrait is Rs. 1,200 and the 50 ml flacon is Rs. 2,000. A 10 ml tester costs Rs. 800. All prices are in PKR, shipping is complimentary, and no payment is taken online — the atelier confirms every order by email.",
+  },
+  {
+    q: "Which is the best luxury perfume for men in Pakistan?",
+    a: "Ghazi — oud, smoke and leather — for the worn-in hour; Yaqoot — smoked cedar, black oud and saffron — for the evening; Legend — molten amber and Turkish rose — for nights worth gifting. All three are 18–25% extrait de parfum, hand-filled in Karachi and balanced for long days.",
+  },
+  {
+    q: "Is SKJ refillable perfume available in Pakistan?",
+    a: "Yes. Every 30 ml and 50 ml flacon is refillable — the crystal and enamel are made to be kept, and refills are available at a reduced price with complimentary shipping across the country.",
+  },
+  {
+    q: "How long does SKJ extrait de parfum last?",
+    a: "Expect 8–12 hours on skin and several days on fabric. At 18–25% parfum concentration, SKJ extraits sit close and release slowly. Longevity also depends on skin chemistry — Ghazi and Yaqoot are the house's most persistent compositions.",
+  },
+  {
+    q: "What is the difference between SKJ and Lattafa?",
+    a: "Both respect the richness of Middle Eastern perfumery. Lattafa produces at scale and sells widely at eau de parfum strength — an excellent gateway. SKJ works in small batches at extrait concentration: hand-filled, refillable and cruelty-free. Lattafa opened the door; SKJ is the quieter room beyond it.",
+  },
+  {
+    q: "Does SKJ ship across Pakistan?",
+    a: "Yes. SKJ ships to Karachi, Lahore, Islamabad, Rawalpindi, Faisalabad, Multan, Peshawar and Quetta, with complimentary delivery. Orders are hand-filled within three working days and confirmed by email with tracking.",
+  },
+];
+
 export default function Home() {
   const featured = getFeaturedProducts();
   const lead = featured.find((product) => product.tag === "Signature") ?? featured[0]!;
   const rest = featured.filter((product) => product.id !== lead.id);
 
   const philosophyImage = getProductBySlug("white-noor")?.image ?? lead.image;
+
+  const site = siteConfig.siteUrl;
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": `${site}/#organization`,
+        name: "SKJ Pure Presence",
+        url: site,
+        logo: `${site}/icon.svg`,
+        email: "atelier@skjpurepresence.com",
+        slogan: "The quietest form of power",
+        foundingDate: "2026",
+        address: {
+          "@type": "PostalAddress",
+          streetAddress: "SKJ House, 48 Gulberg Avenue",
+          addressLocality: "Karachi",
+          addressRegion: "Sindh",
+          postalCode: "74200",
+          addressCountry: "PK",
+        },
+        sameAs: ["https://www.instagram.com", "https://www.pinterest.com"],
+      },
+      {
+        "@type": "Store",
+        "@id": `${site}/#store`,
+        name: "SKJ Pure Presence",
+        url: site,
+        image: `${site}/icon.svg`,
+        email: "atelier@skjpurepresence.com",
+        priceRange: "Rs. 800 – Rs. 2,000",
+        currenciesAccepted: "PKR",
+        areaServed: ["Pakistan", "Karachi"],
+        address: {
+          "@type": "PostalAddress",
+          streetAddress: "SKJ House, 48 Gulberg Avenue",
+          addressLocality: "Karachi",
+          addressRegion: "Sindh",
+          postalCode: "74200",
+          addressCountry: "PK",
+        },
+        geo: {
+          "@type": "GeoCoordinates",
+          latitude: 24.8607,
+          longitude: 67.0011,
+        },
+        openingHoursSpecification: [
+          {
+            "@type": "OpeningHoursSpecification",
+            dayOfWeek: ["Thursday", "Friday", "Saturday"],
+            opens: "12:00",
+            closes: "19:00",
+          },
+        ],
+        parentOrganization: { "@id": `${site}/#organization` },
+      },
+      {
+        "@type": "WebSite",
+        "@id": `${site}/#website`,
+        url: site,
+        name: "SKJ Pure Presence",
+        inLanguage: "en",
+        publisher: { "@id": `${site}/#organization` },
+        potentialAction: {
+          "@type": "SearchAction",
+          target: {
+            "@type": "EntryPoint",
+            urlTemplate: `${site}/search?q={search_term_string}`,
+          },
+          "query-input": "required name=search_term_string",
+        },
+      },
+      {
+        "@type": "FAQPage",
+        "@id": `${site}/#faq`,
+        mainEntity: FAQ_QUESTIONS.map((f) => ({
+          "@type": "Question",
+          name: f.q,
+          acceptedAnswer: { "@type": "Answer", text: f.a },
+        })),
+      },
+    ],
+  };
 
   return (
     <>
@@ -216,6 +346,219 @@ export default function Home() {
           </Reveal>
         </div>
       </section>
+
+      {/* ── SEO content — best perfume in Karachi & Pakistan ── */}
+      <section className="border-t border-ink/10 bg-ivory">
+        <div className="container-luxe py-20 md:py-28">
+          <Reveal>
+            <div className="max-w-2xl">
+              <p className="eyebrow mb-5">The collection, in plain words</p>
+              <h2 className="font-serif text-4xl leading-[1.05] text-ink md:text-5xl">
+                Why the house is called
+                <em className="italic text-gold"> the best perfume in Karachi.</em>
+              </h2>
+            </div>
+          </Reveal>
+
+          <div className="mt-16">
+            {/* The city */}
+            <Reveal>
+              <div className="grid gap-8 border-t border-ink/10 py-12 md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] md:gap-16">
+                <p className="eyebrow">01 · The city</p>
+                <div>
+                  <h3 className="font-serif text-2xl text-ink md:text-3xl">
+                    The best perfume in Karachi, composed by hand
+                  </h3>
+                  <p className="mt-6 max-w-xl text-base leading-8 text-bark">
+                    Karachi gives a scent nothing for free. Humidity, heat and
+                    long evenings undo most perfumes by dinner — which is why an
+                    extrait de parfum, poured at 18–25% concentration, belongs
+                    here. SKJ Pure Presence composes for this particular light:
+                    rare botanicals worked slowly, in small batches, filled by
+                    hand at our Karachi atelier. Worn across Clifton, Zamzama
+                    and Gulberg, the collection holds through the afternoon and
+                    settles into evening without asking for attention. If you
+                    are searching for the best perfume in Karachi — one that
+                    lasts, refills and stays close — begin with the signature,{" "}
+                    <Link href="/product/legend" className="text-link">
+                      Legend
+                    </Link>
+                    , and let the rest of the house find you in time.
+                  </p>
+                  <Link href="/shop" className="text-link mt-7">
+                    Shop the collection
+                    <ArrowUpRight size={14} strokeWidth={1.5} aria-hidden="true" />
+                  </Link>
+                </div>
+              </div>
+            </Reveal>
+
+            {/* The concentration */}
+            <Reveal>
+              <div className="grid gap-8 border-t border-ink/10 py-12 md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] md:gap-16">
+                <p className="eyebrow">02 · The concentration</p>
+                <div>
+                  <h3 className="font-serif text-2xl text-ink md:text-3xl">
+                    A luxury extrait de parfum, composed in Pakistan
+                  </h3>
+                  <p className="mt-6 max-w-xl text-base leading-8 text-bark">
+                    Most perfumes sold in Pakistan are eau de parfum, diluted
+                    for volume. An extrait is a different animal: 18–25% parfum,
+                    poured slowly, worn for hours. SKJ Pure Presence works in
+                    that rarefied register — the discipline of Grasse, balanced
+                    for Pakistani skin and climate. Rare woods, resins and
+                    flowers are blended in silence, in batches too small to be
+                    called a product. The result is a luxury extrait de parfum
+                    in Pakistan that behaves like a signature rather than a
+                    scent: it stays close when you need it, and blooms when you
+                    least expect it.
+                  </p>
+                  <Link href="/product/yakoot" className="text-link mt-7">
+                    Explore the extraction
+                    <ArrowUpRight size={14} strokeWidth={1.5} aria-hidden="true" />
+                  </Link>
+                </div>
+              </div>
+            </Reveal>
+
+            {/* The flacon */}
+            <Reveal>
+              <div className="grid gap-8 border-t border-ink/10 py-12 md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] md:gap-16">
+                <p className="eyebrow">03 · The flacon</p>
+                <div>
+                  <h3 className="font-serif text-2xl text-ink md:text-3xl">
+                    Refillable perfume in Pakistan, made to be kept
+                  </h3>
+                  <p className="mt-6 max-w-xl text-base leading-8 text-bark">
+                    Most fragrance bottles are disposable by design. Ours are
+                    not. SKJ flacons are crystal and enamel, chosen to be kept,
+                    refilled and remembered. Refillable perfume in Pakistan is
+                    still rare, and it changes the relationship: you buy the
+                    composition once, then replenish the essence at a reduced
+                    price instead of buying a new bottle. It is kinder to the
+                    pocket, to the planet and to the scent itself. Every 30 ml
+                    and 50 ml SKJ flacon is refillable, hand-filled at the
+                    atelier and shipped across Pakistan with complimentary
+                    delivery. Keep the bottle. The essence will find you again.
+                  </p>
+                  <Link href="/shop" className="text-link mt-7">
+                    View the collection
+                    <ArrowUpRight size={14} strokeWidth={1.5} aria-hidden="true" />
+                  </Link>
+                </div>
+              </div>
+            </Reveal>
+
+            {/* For him */}
+            <Reveal>
+              <div className="grid gap-8 border-t border-ink/10 py-12 md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] md:gap-16">
+                <p className="eyebrow">04 · For him</p>
+                <div>
+                  <h3 className="font-serif text-2xl text-ink md:text-3xl">
+                    Best perfume for men in Pakistan, priced in PKR
+                  </h3>
+                  <p className="mt-6 max-w-xl text-base leading-8 text-bark">
+                    A men&rsquo;s perfume in Pakistan has to earn its place through
+                    heat and heavier days. SKJ&rsquo;s answer is a small edit of
+                    extraits built for the long wear:{" "}
+                    <Link href="/product/ghazi" className="text-link">
+                      Ghazi
+                    </Link>{" "}
+                    — oud, smoke and leather, softened by davana — for the
+                    worn-in hour;{" "}
+                    <Link href="/product/yakoot" className="text-link">
+                      Yaqoot
+                    </Link>{" "}
+                    — smoked cedar, black oud and saffron over a bruised rose —
+                    for the evening;{" "}
+                    <Link href="/product/legend" className="text-link">
+                      Legend
+                    </Link>{" "}
+                    — molten amber and vanilla — for the nights worth gifting.
+                    All three pour at 18–25% parfum, are hand-filled in Karachi
+                    and start from Rs. 1,200. If you want the best perfume for
+                    men in Pakistan without the crowd on your shoulder, this is
+                    the edit the atelier recommends.
+                  </p>
+                </div>
+              </div>
+            </Reveal>
+
+            {/* In good company */}
+            <Reveal>
+              <div className="grid gap-8 border-t border-ink/10 py-12 md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] md:gap-16">
+                <p className="eyebrow">05 · In good company</p>
+                <div>
+                  <h3 className="font-serif text-2xl text-ink md:text-3xl">
+                    For those who love J. Perfumes, Lattafa and Janan
+                  </h3>
+                  <p className="mt-6 max-w-xl text-base leading-8 text-bark">
+                    J. Perfumes, Lattafa and Janan built modern fragrance
+                    culture in Pakistan, and they remain the doorway for most
+                    collectors. SKJ Pure Presence holds the same inheritance —
+                    Middle Eastern opulence, French discipline — with one
+                    difference: discipline. Where those houses pour eau de
+                    parfum at volume, SKJ works small, at 18–25% extrait
+                    concentration, with refillable flacons filled by hand in
+                    Karachi. Loyal to J. and Lattafa? Meet them at the same
+                    register — richer, longer, quieter. And because every SKJ
+                    composition is a variation rather than an imitation, it is a
+                    natural next step for anyone weaned on Janan.
+                  </p>
+                  <Link href="/product/legend" className="text-link mt-7">
+                    Compare the signatures
+                    <ArrowUpRight size={14} strokeWidth={1.5} aria-hidden="true" />
+                  </Link>
+                </div>
+              </div>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* ── FAQ ── */}
+      <section className="border-t border-ink/10 bg-cream">
+        <div className="container-luxe py-20 md:py-28">
+          <Reveal>
+            <div className="max-w-2xl">
+              <p className="eyebrow mb-5">Questions, answered</p>
+              <h2 className="font-serif text-4xl leading-[1.05] text-ink md:text-5xl">
+                The house, <em className="italic text-gold">in plain words.</em>
+              </h2>
+            </div>
+          </Reveal>
+
+          <div className="mx-auto mt-14 max-w-3xl">
+            {FAQ_QUESTIONS.map((faq) => (
+              <details
+                key={faq.q}
+                className="group border-b border-ink/10"
+              >
+                <summary className="flex cursor-pointer items-center justify-between gap-6 py-7 font-serif text-lg leading-snug text-ink transition-colors hover:text-gold md:text-xl">
+                  {faq.q}
+                  <span
+                    aria-hidden="true"
+                    className="shrink-0 font-sans text-2xl font-light text-gold transition-transform duration-300 group-open:rotate-45"
+                  >
+                    +
+                  </span>
+                </summary>
+                <p className="pb-7 text-sm leading-7 text-bark md:text-base md:leading-8">
+                  {faq.a}
+                </p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Structured data: Organization, Store, WebSite, FAQ ── */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
+        }}
+      />
 
       {/* ── Newsletter CTA removed — arrives with the collection release ── */}
     </>
