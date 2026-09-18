@@ -28,6 +28,9 @@ export const metadata: Metadata = {
   },
   description:
     "SKJ Pure Presence composes hand-filled extraits de parfum in Pakistan. Refillable, cruelty-free, 18–25% parfum. Discover the best perfume in Karachi.",
+  verification: {
+    google: "1wCaCw0Baxwm7b66ENrWLef7lQFMlVfr4XMxb_0QQek",
+  },
   keywords: [
     "SKJ Pure Presence",
     "best perfume in Karachi",
