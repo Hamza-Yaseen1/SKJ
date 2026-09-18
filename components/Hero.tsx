@@ -102,17 +102,20 @@ export default function Hero({ slides, count }: HeroProps) {
           {...fade(0.12)}
           className="max-w-4xl font-serif text-[3.25rem] leading-[0.98] text-cream sm:text-7xl lg:text-[6.25rem]"
         >
-          SKJ Pure Presence.
+          The best
           <br />
-          <em className="italic text-gold-light">The quietest form of power.</em>
+          <em className="italic text-gold-light">
+            perfume in Pakistan.
+          </em>
         </motion.h1>
         <motion.p
           {...fade(0.24)}
-          className="mt-8 max-w-lg text-base leading-8 text-cream/75 md:text-lg"
+          className="mt-8 max-w-xl text-base leading-8 text-cream/75 md:text-lg"
         >
-          SKJ Pure Presence composes rare, high-concentration fragrances
-          for those who move through the world loudly — without saying a
-          word.
+          SKJ Pure Presence composes rare, long-lasting extraits de parfum —
+          18&ndash;25% parfum — hand-filled in Karachi. A luxury perfume in
+          Pakistan that projects all evening, and
+          starts at Rs. 1,200.
         </motion.p>
 
         <motion.div

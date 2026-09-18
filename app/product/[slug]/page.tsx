@@ -45,7 +45,18 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 
   const title = `${product.name} ${product.concentration} | SKJ Pakistan`;
-  const description = `${product.name}: ${truncate(product.description, 120)} Composed in Pakistan.`;
+  const prices = product.sizes.map((s) => s.price);
+  const priceRange = `${Math.min(...prices) ?? 0}–${
+    Math.max(...prices) ?? 0
+  } PKR`;
+  const longevity =
+    product.projection === "Rich" || product.projection === "Moderate"
+      ? "long lasting perfume in Pakistan"
+      : "serene, close-worn perfume in Pakistan";
+  const description = `${product.name} — ${truncate(
+    product.description,
+    110
+  )} ${product.concentration}, ${product.projection.toLowerCase()} wear, ${longevity}, priced ${priceRange} and composed by hand in Karachi.`;
   const url = `/product/${slug}`;
 
   return {
