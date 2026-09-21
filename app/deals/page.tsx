@@ -82,6 +82,9 @@ export default function DealsPage() {
             <p className="mt-6 max-w-md text-base leading-8 text-bark">
               {deal.description}
             </p>
+            <p className="mt-6 max-w-2xl text-base leading-8 text-bark">
+              Discover the current offers from the SKJ atelier, where thoughtful fragrances and limited-time savings come together. These promotions are available for a short window, so it is worth reviewing the selection while the offer lasts and adding your favourites to cart before it ends. We refresh the collection with new discoveries over time, so check back often if you are waiting for the next special offer or a seasonal scent to return.
+            </p>
 
             <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-5">
               <Link href={deal.link} className="btn btn-gold">

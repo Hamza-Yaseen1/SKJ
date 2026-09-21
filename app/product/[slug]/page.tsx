@@ -132,6 +132,39 @@ export default async function ProductPage({ params }: PageProps) {
     { key: "heart", label: "Heart notes", note: "The character" },
     { key: "base", label: "Base notes", note: "The memory" },
   ];
+  const productStories: Record<string, string[]> = {
+    yakoot: [
+      "Yaqoot opens with a warm, polished radiance: saffron and pink pepper lend a soft glow, while bergamot keeps the first impression fresh and lifted. It feels immediately elegant without trying too hard, like a jewel brought close to the skin.",
+      "The heart deepens around damask rose, labdanum, and geranium, creating a velvet-smoke blend that is floral but never airy. This is where the perfume becomes more intimate and more personal, with rose held in a richer, darker register than usual.",
+      "The dry down is where Yaqoot settles into its signature character. Black oud, cedar, vetiver, and amber leave a beautifully textured trail that feels luxurious, grounded, and unmistakably warm. It is ideal for evening wear, cooler seasons, and occasions when you want a fragrance that feels composed and quietly bold.",
+      "Apply it to pulse points such as the wrists, neck, and chest, and let it warm naturally on the skin. Yaqoot is a compelling choice for someone who loves rich oud perfumes with softness, romance, and a mature, elegant finish."
+    ],
+    legend: [
+      "Legend is the house signature in a luminous, warm register: saffron, tangerine, and orange blossom create an immediate feeling of richness and brightness. It opens with a golden clarity that feels both inviting and memorable, like a generous welcome rather than a sudden statement.",
+      "At its heart, Turkish rose, jasmine sambac, and cinnamon deepen the composition without making it heavy. The floral layers are lush and elegant, while the spice keeps the perfume alive and beautifully dimensional. This balance gives Legend its graceful, polished character.",
+      "The base settles into amber, vanilla, tonka bean, and oud, creating a smooth and enveloping finish that lingers close and beautifully. It is a fragrance that feels both luxurious and approachable, suitable for dinners, celebrations, and evenings when you want to leave a lasting impression without overpowering the room.",
+      "Wear Legend on warm skin at the wrist, behind the ears, and along the collarbone for a soft but enduring trail. It is an excellent choice for anyone who loves a rich floral-oriental perfume that feels romantic, memorable, and quietly grand."
+    ],
+    "white-noor": [
+      "White Noor begins with neroli, pear, and green mandarin, creating a crisp and polished opening that feels bright, clean, and airy. The effect is fresh and luminous rather than sweet, which keeps the fragrance elegant from the very first spray.",
+      "The heart opens into orange blossom, jasmine sambac, and peony, adding softness and a delicate floral brightness. This is where White Noor becomes more graceful and refined, with the florals speaking in a smooth, airy way rather than a loud or powdery one.",
+      "The dry down settles into white musk, blonde woods, and ambergris, giving the perfume a soft, skin-close finish that feels quietly radiant. It is a beautiful choice for daytime wear, spring and summer evenings, and situations where you want something polished but fresh without being overpowering.",
+      "Apply White Noor to the wrists, neck, and inner elbows, or on clothing for a more subtle, lingering effect. It suits someone who prefers clean, luminous florals with a modern edge and a soft, graceful trail that feels sophisticated and easy to wear."
+    ],
+    "icy-noor": [
+      "Icy Noor opens with bergamot, lemon, neroli, and petitgrain, creating an immediate burst of freshness that feels cool, crisp, and uplifting. The top notes carry a clean, almost Mediterranean brightness, setting the tone for a fragrance that is both airy and polished.",
+      "The heart introduces green fig, orange blossom, and jasmine, which gives the perfume a soft floral lift without losing its lightness. This middle phase is where Icy Noor becomes more fluid and elegant, balancing fruit and florals with a cool, refreshing finish.",
+      "As it settles, white musk, cedar, and ambergris give the composition a clean, smooth base that feels refined and long-wearing yet never heavy. It is a fragrance that feels especially comfortable in warm weather, daytime settings, and relaxed summer occasions when you want to smell fresh, polished, and effortlessly present.",
+      "Apply Icy Noor to pulse points or lightly on clothing for an airy, clean trail. It is an ideal choice for anyone who enjoys crisp white florals and luminous citrus notes with a modern, skin-like finish that feels invigorating and quietly elegant."
+    ],
+    "perfume-tester": [
+      "The Perfume Tester is a practical way to experience the house before committing to a full bottle. It is designed for those who want to wear the fragrance over a few days, understand how it evolves on their skin, and decide whether the character suits their mood and routine.",
+      "This sample-size format carries the same rich impression as the house signature, beginning with bergamot, saffron, and pink pepper before settling into a warm, elegant heart of damask rose, amber, and cedar. The effect is immediate without feeling abrupt, creating an opening that feels sophisticated and softly radiant.",
+      "As the composition dries down, oud, vanilla, and musk add depth and softness, leaving a smooth, intimate trail that feels rich but not heavy. It is especially useful for travel, gifting, or testing a scent you are unsure about before investing in a larger bottle.",
+      "Use the Perfume Tester on pulse points and revisit it through the day to see how it settles on your skin. It is a wise choice for anyone who wants to explore the collection carefully and pick a fragrance that feels personal, wearable, and beautifully composed."
+    ],
+  };
+  const story = productStories[product.slug] ?? [product.description];
   return (
     <>
       {/* ── Structured data: Product + Breadcrumb ── */}
@@ -284,6 +317,14 @@ export default async function ProductPage({ params }: PageProps) {
             <p className="max-w-md font-serif text-lg italic text-bark md:text-xl">
               Worn in three movements — the greeting, the character, the memory.
             </p>
+          </div>
+
+          <div className="mt-16 max-w-4xl text-base leading-8 text-bark">
+            {story.map((paragraph) => (
+              <p key={paragraph} className="mt-6 first:mt-0">
+                {paragraph}
+              </p>
+            ))}
           </div>
         </div>
       </section>

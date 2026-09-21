@@ -44,10 +44,10 @@ export default function CartView() {
             <span className="h-px w-12 bg-gold/40" />
           </div>
           <p className="eyebrow mt-9">Your bag</p>
-          <h1 className="mx-auto max-w-2xl font-serif text-4xl leading-[1.05] text-ink md:text-6xl">
+          <h2 className="mx-auto max-w-2xl font-serif text-4xl leading-[1.05] text-ink md:text-6xl">
             An empty bag is
             <em className="italic text-gold"> a quiet beginning.</em>
-          </h1>
+          </h2>
           <p className="mx-auto mt-7 max-w-md text-base leading-8 text-bark">
             The collection is six extraits, composed by hand in Pakistan.
             Begin where you linger — and the atelier will keep your selection
@@ -79,10 +79,10 @@ export default function CartView() {
         <div className="mb-12 flex flex-col justify-between gap-4 md:mb-16 md:flex-row md:items-end">
           <div>
             <p className="eyebrow mb-4">Your bag</p>
-            <h1 className="font-serif text-4xl leading-[1.05] text-ink md:text-5xl">
+            <h2 className="font-serif text-4xl leading-[1.05] text-ink md:text-5xl">
               What you have
               <em className="italic text-gold"> chosen.</em>
-            </h1>
+            </h2>
           </div>
           <p className="flex items-center gap-3 text-[11px] uppercase tracking-[0.16em] text-stone">
             {count} {count === 1 ? "piece" : "pieces"}
@@ -91,6 +91,10 @@ export default function CartView() {
           </p>
         </div>
         </Reveal>
+
+        <div className="mb-10 max-w-3xl text-base leading-8 text-bark">
+          Review your selected fragrances, update quantities as needed, and confirm that every piece still feels right for you before checkout. Shipping is complimentary, and each order is prepared with care before being sent onward. If you would like to adjust your selections, continue shopping, or speak with the atelier about a question before completing your purchase, we are happy to help.
+        </div>
 
         <div className="grid gap-14 lg:grid-cols-[1fr_380px] lg:gap-16">
           {/* Line items */}

@@ -83,7 +83,7 @@ export const products: Product[] = [
     tag: "Signature",
     projection: "Rich",
     description:
-      "The house signature — molten amber and vanilla wrapped in a cloud of Turkish rose. Legend wears like held light, close and generous at once.",
+      "A richly luminous floral-oriental perfume shaped by saffron, Turkish rose, amber, and vanilla. It opens radiant and warm, then settles into a close, memorable trail.",
     notes: {
       top: ["Saffron", "Tangerine", "Orange Blossom"],
       heart: ["Turkish Rose", "Jasmine Sambac", "Cinnamon"],
@@ -120,7 +120,7 @@ export const products: Product[] = [
     sizes: sizes(1200, 2000),
     projection: "Moderate",
     description:
-      "Light on white marble. Orange blossom and jasmine settle into soft musk and blonde woods — luminous, serene, quietly radiant.",
+      "A luminous white floral inspired by cool marble, orange blossom, jasmine, and clean musk. It feels poised, fresh, and quietly radiant from the first spray.",
     notes: {
       top: ["Neroli", "Pear", "Green Mandarin"],
       heart: ["Orange Blossom", "Jasmine Sambac", "Peony"],
@@ -138,7 +138,7 @@ export const products: Product[] = [
     sizes: sizes(1200, 2000),
     projection: "Moderate",
     description:
-      "A cold Mediterranean morning. Bergamot and neroli over sun-warmed fig, drying into a clean white-musk caress that insists on summer.",
+      "A crisp white floral with bergamot, neroli, and fig unfolding into a fresh, airy musk. It feels bright and clean, like a cool summer morning in full light.",
     notes: {
       top: ["Bergamot", "Lemon", "Neroli", "Petitgrain"],
       heart: ["Green Fig", "Orange Blossom", "Jasmine"],
@@ -158,7 +158,7 @@ export const products: Product[] = [
     ],
     projection: "Subtle",
     description:
-      "The house, unboxed. An essai flacon carrying the house extrait — poured to be sampled, worn and taken to task before you give it a permanent shelf.",
+      "A sample-size fragrance experience that lets you wear the house before committing to a full bottle. Easy to carry, easy to try, and made for discovering your favourite scent.",
     notes: {
       top: ["Bergamot", "Saffron", "Pink Pepper"],
       heart: ["Damask Rose", "Amber", "Cedar"],
