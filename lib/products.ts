@@ -172,7 +172,7 @@ export const products: Product[] = [
 /* ── Accessors ── */
 
 const PRODUCT_ROUTE_SLUGS: Record<string, string> = {
-  yakoot: "yakoot-perfume",
+  yakoot: "yakoot",
 };
 
 export function getAllProducts(): Product[] {
@@ -180,8 +180,7 @@ export function getAllProducts(): Product[] {
 }
 
 export function getProductBySlug(slug: string): Product | undefined {
-  const catalogSlug = slug === "yakoot-perfume" ? "yakoot" : slug;
-  return products.find((p) => p.slug === catalogSlug);
+  return products.find((p) => p.slug === slug);
 }
 
 export function getProductRouteSlug(slug: string): string {

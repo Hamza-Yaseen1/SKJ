@@ -19,7 +19,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
-      url: `${site}/perfume-deals`,
+      url: `${site}/deals`,
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 0.6,

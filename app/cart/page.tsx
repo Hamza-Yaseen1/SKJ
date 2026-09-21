@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import CartView from "@/components/cart/CartView";
 
 export const metadata: Metadata = {
-  title: { absolute: "Your Cart | SKJ Pure Presence" },
+  title: { absolute: "Your Shopping Cart | SKJ Pure Presence" },
   description:
     "Review your SKJ selection — refine quantities and step quietly toward checkout.",
 };
@@ -39,6 +39,17 @@ export default function CartPage() {
               composition, changing an order, or understanding delivery,
               contact the atelier at atelier@skjpurepresence.com and we will be
               glad to help.
+            </p>
+            <p className="mt-5">
+              Before placing your order, make sure the size and
+              fragrance suit the way you plan to wear it. You can return to the
+              collection at any time to compare compositions, explore another
+              scent family, or add a tester for a slower introduction. Your
+              subtotal changes automatically as you adjust the cart, while the
+              complimentary delivery remains visible in the order summary. Once
+              your details are confirmed, the atelier will
+              prepare your selection and keep you informed if anything needs
+              clarification.
             </p>
           </div>
         </div>

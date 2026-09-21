@@ -294,7 +294,7 @@ export default function Home() {
                   </p>
                 </div>
               </div>
-              <Link href="/perfume-deals" className="text-link text-link-light text-cream">
+              <Link href="/deals" className="text-link text-link-light text-cream">
                 View the deal
                 <ArrowUpRight size={14} strokeWidth={1.5} aria-hidden="true" />
               </Link>
@@ -463,7 +463,7 @@ export default function Home() {
               image={PLACEHOLDER_LEGEND}
               alt="SKJ Pure Presence Legend extrait de parfum flacon, composed in Pakistan"
               flip
-              action={{ href: "/product/yakoot-perfume", label: "Explore the extraction" }}
+              action={{ href: "/product/yakoot", label: "Explore the extraction" }}
             >
               Most perfumes sold in Pakistan are eau de parfum, diluted for
               volume. An extrait is a different animal: 18–25% parfum, poured
@@ -508,7 +508,7 @@ export default function Home() {
               built for the long wear:{" "}
               <Link href="/product/ghazi" className="text-link">Ghazi</Link> —
               oud, smoke and leather, softened by davana — for the worn-in hour;{" "}
-              <Link href="/product/yakoot-perfume" className="text-link">Yaqoot</Link> —
+              <Link href="/product/yakoot" className="text-link">Yaqoot</Link> —
               smoked cedar, black oud and saffron over a bruised rose — for the
               evening; <Link href="/product/legend" className="text-link">Legend</Link>{" "}
               — molten amber and vanilla — for the nights worth gifting. All

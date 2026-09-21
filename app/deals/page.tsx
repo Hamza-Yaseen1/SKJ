@@ -17,7 +17,7 @@ const DEAL_LABELS: Record<DealType, string> = {
 const openGraph = activeDeal
   ? {
       type: "website" as const,
-      url: "/perfume-deals",
+      url: "/deals",
       title: `${activeDeal.title} · SKJ`,
       description: activeDeal.description,
       images: [{ url: activeDeal.image, alt: activeDeal.title }],
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   title: { absolute: "Deal of the Week | SKJ Pure Presence" },
   description:
     "The current SKJ Pure Presence promotion — a considered gesture from the atelier. Buy 1 Get 1 Free: any 100 ml extrait, a 50 ml free.",
-  alternates: { canonical: "/perfume-deals" },
+  alternates: { canonical: "/deals" },
   openGraph,
 };
 
