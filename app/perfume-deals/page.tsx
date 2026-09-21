@@ -17,7 +17,7 @@ const DEAL_LABELS: Record<DealType, string> = {
 const openGraph = activeDeal
   ? {
       type: "website" as const,
-      url: "/deals",
+      url: "/perfume-deals",
       title: `${activeDeal.title} · SKJ`,
       description: activeDeal.description,
       images: [{ url: activeDeal.image, alt: activeDeal.title }],
@@ -25,10 +25,10 @@ const openGraph = activeDeal
   : undefined;
 
 export const metadata: Metadata = {
-  title: "Deal of the Week | SKJ Perfume Promotions in Pakistan",
+  title: { absolute: "Deal of the Week | SKJ Pure Presence" },
   description:
     "The current SKJ Pure Presence promotion — a considered gesture from the atelier. Buy 1 Get 1 Free: any 100 ml extrait, a 50 ml free.",
-  alternates: { canonical: "/deals" },
+  alternates: { canonical: "/perfume-deals" },
   openGraph,
 };
 
@@ -53,7 +53,7 @@ export default function DealsPage() {
             Check back soon — the house is always composing something. While
             you wait, the collection is open.
           </p>
-          <Link href="/shop" className="btn btn-gold mt-10">
+          <Link href="/all-perfumes" className="btn btn-gold mt-10">
             Discover the collection
             <ArrowRight size={14} strokeWidth={1.5} aria-hidden="true" />
           </Link>
@@ -85,13 +85,21 @@ export default function DealsPage() {
             <p className="mt-6 max-w-2xl text-base leading-8 text-bark">
               Discover the current offers from the SKJ atelier, where thoughtful fragrances and limited-time savings come together. These promotions are available for a short window, so it is worth reviewing the selection while the offer lasts and adding your favourites to cart before it ends. We refresh the collection with new discoveries over time, so check back often if you are waiting for the next special offer or a seasonal scent to return.
             </p>
+            <p className="mt-5 max-w-2xl text-base leading-8 text-bark">
+              Offers can vary by fragrance, bottle size, and availability, and
+              terms may change as the atelier updates the collection. Review the
+              details on the product page before checkout, since each promotion
+              is available only during its stated offer period and while stock
+              lasts. If something catches your eye, add it to your cart while it
+              is available, then return regularly to see what has changed.
+            </p>
 
             <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-5">
               <Link href={deal.link} className="btn btn-gold">
                 {deal.buttonText}
                 <ArrowRight size={14} strokeWidth={1.5} aria-hidden="true" />
               </Link>
-              <Link href="/shop" className="text-link">
+              <Link href="/all-perfumes" className="text-link">
                 Browse the collection
                 <ArrowUpRight size={14} strokeWidth={1.5} aria-hidden="true" />
               </Link>
@@ -131,7 +139,7 @@ export default function DealsPage() {
                 <em className="italic text-gold">as an encore.</em>
               </h2>
             </div>
-            <Link href="/shop" className="text-link">
+            <Link href="/all-perfumes" className="text-link">
               View all fragrances
               <ArrowUpRight size={14} strokeWidth={1.5} aria-hidden="true" />
             </Link>

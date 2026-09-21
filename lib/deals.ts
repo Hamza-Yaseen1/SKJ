@@ -13,7 +13,7 @@
  *     The site then shows "No deal available".
  *
  *  3. EDIT copy         → change the strings inside the
- *     object. `link` can be "/shop", "/product/legend",
+ *     object. `link` can be "/all-perfumes", "/product/legend",
  *     or any route you like.
  *
  *  There are ready-made templates at the bottom — copy any
@@ -43,7 +43,7 @@ export const activeDeal: Deal | null = {
     "Buy any 100 ml extrait and receive a 50 ml of your choice, free.",
   image: "/Images/yakoot/yakoot.jpg",
   buttonText: "Shop Now",
-  link: "/shop",
+  link: "/all-perfumes",
 };
 
 /* =================================================================
@@ -59,7 +59,7 @@ export const activeDeal: Deal | null = {
        "A complimentary tester flacon with every fragrance — the house, tried before it is kept.",
      image: "/Images/Perfume-tester/0c7b951f-5463-42de-b41e-bb067b780bc0.jpg",
      buttonText: "Claim the Tester",
-     link: "/shop",
+    link: "/all-perfumes",
    };
 
    ── Discount on selected perfumes ───────────────────────────────
@@ -70,7 +70,7 @@ export const activeDeal: Deal | null = {
        "White Noor and Icy Noor, considered a little more kindly this week.",
      image: "/Images/White-noor/White_Noor_inspired_by_Musil.jpg",
      buttonText: "Shop the Discount",
-     link: "/shop",
+    link: "/all-perfumes",
    };
 
    ── Bundle offer ────────────────────────────────────────────────
@@ -81,7 +81,7 @@ export const activeDeal: Deal | null = {
        "Yaqoot and Legend in one considered bundle — the house signature and its shadow.",
      image: "/Images/Legend/abf7e7fb-d55f-4773-a333-cd379ac3fddc.jpg",
      buttonText: "View the Bundle",
-     link: "/shop",
+    link: "/all-perfumes",
    };
 
    ── No deal at all ──────────────────────────────────────────────

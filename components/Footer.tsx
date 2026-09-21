@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Mail, MapPin } from "lucide-react";
 
 const EXPLORE_LINKS = [
-  { label: "The Collection", href: "/shop" },
+  { label: "The Collection", href: "/all-perfumes" },
   { label: "Our Story", href: "/about" },
   { label: "Contact", href: "/contact" },
 ];

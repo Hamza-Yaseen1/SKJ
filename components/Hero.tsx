@@ -122,7 +122,7 @@ export default function Hero({ slides, count }: HeroProps) {
           {...fade(0.36)}
           className="mt-12 flex flex-wrap items-center gap-x-10 gap-y-6"
         >
-          <Link href="/shop" className="btn btn-gold">
+          <Link href="/all-perfumes" className="btn btn-gold">
             Discover the collection
             <ArrowRight size={14} strokeWidth={1.5} aria-hidden="true" />
           </Link>

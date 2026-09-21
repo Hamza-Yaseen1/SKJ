@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { getAllProducts } from "@/lib/products";
+import { getAllProducts, getProductUrl } from "@/lib/products";
 import { siteConfig } from "@/lib/config";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -13,13 +13,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1,
     },
     {
-      url: `${site}/shop`,
+      url: `${site}/all-perfumes`,
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 0.9,
     },
     {
-      url: `${site}/deals`,
+      url: `${site}/perfume-deals`,
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 0.6,
@@ -40,7 +40,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const productRoutes: MetadataRoute.Sitemap = getAllProducts().map(
     (product) => ({
-      url: `${site}/product/${product.slug}`,
+      url: `${site}${getProductUrl(product.slug)}`,
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.8,

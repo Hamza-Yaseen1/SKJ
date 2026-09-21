@@ -23,7 +23,7 @@ export default function NotFound() {
           <Link href="/" className="btn btn-gold">
             Return home
           </Link>
-          <Link href="/shop" className="text-link text-link-light text-cream">
+          <Link href="/all-perfumes" className="text-link text-link-light text-cream">
             Browse the collection
           </Link>
         </div>

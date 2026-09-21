@@ -294,7 +294,7 @@ export default function Home() {
                   </p>
                 </div>
               </div>
-              <Link href="/deals" className="text-link text-link-light text-cream">
+              <Link href="/perfume-deals" className="text-link text-link-light text-cream">
                 View the deal
                 <ArrowUpRight size={14} strokeWidth={1.5} aria-hidden="true" />
               </Link>
@@ -321,7 +321,7 @@ export default function Home() {
                   vocabulary of six.
                 </p>
               </div>
-              <Link href="/shop" className="text-link">
+              <Link href="/all-perfumes" className="text-link">
                 View all {getAllProducts().length} fragrances
                 <ArrowUpRight size={14} strokeWidth={1.5} aria-hidden="true" />
               </Link>
@@ -441,7 +441,7 @@ export default function Home() {
               title="The best perfume in Karachi, composed by hand"
               image={PLACEHOLDER_YAKOOT}
               alt="SKJ Pure Presence extrait de parfum flacon, hand-filled at the atelier in Karachi"
-              action={{ href: "/shop", label: "Shop the collection" }}
+              action={{ href: "/all-perfumes", label: "Shop the collection" }}
             >
               Karachi gives a scent nothing for free. Humidity, heat and long
               evenings undo most perfumes by dinner — which is why an extrait de
@@ -463,7 +463,7 @@ export default function Home() {
               image={PLACEHOLDER_LEGEND}
               alt="SKJ Pure Presence Legend extrait de parfum flacon, composed in Pakistan"
               flip
-              action={{ href: "/product/yakoot", label: "Explore the extraction" }}
+              action={{ href: "/product/yakoot-perfume", label: "Explore the extraction" }}
             >
               Most perfumes sold in Pakistan are eau de parfum, diluted for
               volume. An extrait is a different animal: 18–25% parfum, poured
@@ -482,7 +482,7 @@ export default function Home() {
               title="Refillable perfume in Pakistan, made to be kept"
               image={PLACEHOLDER_TESTER}
               alt="Refillable perfume in Pakistan — SKJ Pure Presence crystal flacon at the Karachi atelier"
-              action={{ href: "/shop", label: "View the collection" }}
+              action={{ href: "/all-perfumes", label: "View the collection" }}
             >
               Most fragrance bottles are disposable by design. Ours are not. SKJ
               flacons are crystal and enamel, chosen to be kept, refilled and
@@ -508,7 +508,7 @@ export default function Home() {
               built for the long wear:{" "}
               <Link href="/product/ghazi" className="text-link">Ghazi</Link> —
               oud, smoke and leather, softened by davana — for the worn-in hour;{" "}
-              <Link href="/product/yakoot" className="text-link">Yaqoot</Link> —
+              <Link href="/product/yakoot-perfume" className="text-link">Yaqoot</Link> —
               smoked cedar, black oud and saffron over a bruised rose — for the
               evening; <Link href="/product/legend" className="text-link">Legend</Link>{" "}
               — molten amber and vanilla — for the nights worth gifting. All

@@ -75,7 +75,7 @@ export default function About() {
                 SKJ Pure Presence exists for the moments that deserve more than a crowd.
               </p>
             </div>
-            <Link href="/shop" className="text-link mt-10">
+            <Link href="/all-perfumes" className="text-link mt-10">
               Explore the collection
             </Link>
           </Reveal>
@@ -162,7 +162,7 @@ export default function About() {
             <em className="italic text-gold-light">Ours are remembered.</em>
           </p>
           <div className="mt-12 flex flex-wrap items-center justify-center gap-x-8 gap-y-4">
-            <Link href="/shop" className="btn btn-gold">
+            <Link href="/all-perfumes" className="btn btn-gold">
               Discover the collection
             </Link>
             <Link href="/contact" className="text-link text-link-light text-cream">

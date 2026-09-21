@@ -171,12 +171,25 @@ export const products: Product[] = [
 
 /* ── Accessors ── */
 
+const PRODUCT_ROUTE_SLUGS: Record<string, string> = {
+  yakoot: "yakoot-perfume",
+};
+
 export function getAllProducts(): Product[] {
   return products;
 }
 
 export function getProductBySlug(slug: string): Product | undefined {
-  return products.find((p) => p.slug === slug);
+  const catalogSlug = slug === "yakoot-perfume" ? "yakoot" : slug;
+  return products.find((p) => p.slug === catalogSlug);
+}
+
+export function getProductRouteSlug(slug: string): string {
+  return PRODUCT_ROUTE_SLUGS[slug] ?? slug;
+}
+
+export function getProductUrl(slug: string): string {
+  return `/product/${getProductRouteSlug(slug)}`;
 }
 
 export function getFeaturedProducts(): Product[] {

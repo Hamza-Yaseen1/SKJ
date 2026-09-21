@@ -10,6 +10,8 @@ import {
   getAllProducts,
   getProductBySlug,
   getRelatedProducts,
+  getProductRouteSlug,
+  getProductUrl,
 } from "@/lib/products";
 import { siteConfig } from "@/lib/config";
 
@@ -19,7 +21,9 @@ interface PageProps {
 
 /** Pre-render every known fragrance at build time. */
 export function generateStaticParams() {
-  return getAllProducts().map((product) => ({ slug: product.slug }));
+  return getAllProducts().map((product) => ({
+    slug: getProductRouteSlug(product.slug),
+  }));
 }
 
 /** Anything outside the catalogue is a 404. */
@@ -57,10 +61,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     product.description,
     110
   )} ${product.concentration}, ${product.projection.toLowerCase()} wear, ${longevity}, priced ${priceRange} and composed by hand in Karachi.`;
-  const url = `/product/${slug}`;
+  const url = getProductUrl(product.slug);
 
   return {
-    title,
+    title: { absolute: title },
     description,
     alternates: { canonical: url },
     openGraph: {
@@ -86,7 +90,7 @@ export default async function ProductPage({ params }: PageProps) {
   if (!product) notFound();
 
   const site = siteConfig.siteUrl;
-  const pageUrl = `${site}/product/${product.slug}`;
+  const pageUrl = `${site}${getProductUrl(product.slug)}`;
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
@@ -118,7 +122,7 @@ export default async function ProductPage({ params }: PageProps) {
             "@type": "ListItem",
             position: 2,
             name: "Collection",
-            item: `${site}/shop`,
+            item: `${site}/all-perfumes`,
           },
           { "@type": "ListItem", position: 3, name: product.name, item: pageUrl },
         ],
@@ -138,6 +142,12 @@ export default async function ProductPage({ params }: PageProps) {
       "The heart deepens around damask rose, labdanum, and geranium, creating a velvet-smoke blend that is floral but never airy. This is where the perfume becomes more intimate and more personal, with rose held in a richer, darker register than usual.",
       "The dry down is where Yaqoot settles into its signature character. Black oud, cedar, vetiver, and amber leave a beautifully textured trail that feels luxurious, grounded, and unmistakably warm. It is ideal for evening wear, cooler seasons, and occasions when you want a fragrance that feels composed and quietly bold.",
       "Apply it to pulse points such as the wrists, neck, and chest, and let it warm naturally on the skin. Yaqoot is a compelling choice for someone who loves rich oud perfumes with softness, romance, and a mature, elegant finish."
+    ],
+    ghazi: [
+      "Ghazi begins with black pepper, cardamom, and incense, creating a cool, smoky opening that feels assured rather than aggressive. The first impression is dark and textured, with a dry spice that gives the fragrance a quietly commanding presence.",
+      "At the heart, oud, davana, and leather create a worn-in warmth that feels intimate and grounded. Davana softens the darker materials with a subtle herbal sweetness, while leather gives the composition its distinctive edge and depth.",
+      "The base settles into patchouli, vetiver, charred cedar, and musk, leaving a dry, earthy trail that develops beautifully over several hours. Ghazi is especially suited to evening wear, cooler weather, and moments when you want a fragrance that feels personal, composed, and enduring.",
+      "Apply Ghazi lightly to the wrists, neck, or chest and allow the warmth of the skin to reveal its layers. It is a strong choice for anyone drawn to oud, smoke, and leather, but who still wants a fragrance with balance, softness, and a refined finish.",
     ],
     legend: [
       "Legend is the house signature in a luminous, warm register: saffron, tangerine, and orange blossom create an immediate feeling of richness and brightness. It opens with a golden clarity that feels both inviting and memorable, like a generous welcome rather than a sudden statement.",
@@ -190,7 +200,7 @@ export default async function ProductPage({ params }: PageProps) {
             /
           </li>
           <li>
-            <Link href="/shop" className="transition-colors hover:text-ink">
+            <Link href="/all-perfumes" className="transition-colors hover:text-ink">
               Collection
             </Link>
           </li>
@@ -340,7 +350,7 @@ export default async function ProductPage({ params }: PageProps) {
                   Scent <em className="italic text-gold">in dialogue</em>
                 </h2>
               </div>
-              <Link href="/shop" className="text-link">
+              <Link href="/all-perfumes" className="text-link">
                 View all fragrances
                 <ArrowUpRight size={14} strokeWidth={1.5} aria-hidden="true" />
               </Link>

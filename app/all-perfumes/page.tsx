@@ -5,13 +5,13 @@ import Reveal from "@/components/Reveal";
 import { getAllProducts, Product } from "@/lib/products";
 
 export const metadata: Metadata = {
-  title: "SKJ Perfumes in Pakistan | The Collection",
+  title: { absolute: "SKJ Perfumes in Pakistan | The Collection" },
   description:
     "Six hand-composed SKJ perfumes in Pakistan — woody, floral, oriental, white and chypre. Refillable, long-lasting extrait de parfum, from Rs. 1,200.",
-  alternates: { canonical: "/shop" },
+  alternates: { canonical: "/all-perfumes" },
   openGraph: {
     type: "website",
-    url: "/shop",
+    url: "/all-perfumes",
     title: "SKJ Perfumes in Pakistan | The Collection",
     description:
       "Six hand-composed SKJ perfumes in Pakistan across woody, floral, oriental, white and chypre families — refillable, extrait de parfum.",

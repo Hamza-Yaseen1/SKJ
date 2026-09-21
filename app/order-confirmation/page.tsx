@@ -111,7 +111,7 @@ export default async function OrderConfirmationPage({ searchParams }: PageProps)
         </Reveal>
 
         <div className="mt-14 flex flex-wrap items-center justify-center gap-x-8 gap-y-4">
-          <Link href="/shop" className="btn btn-gold">
+          <Link href="/all-perfumes" className="btn btn-gold">
             Continue shopping
             <ArrowRight size={14} strokeWidth={1.5} aria-hidden="true" />
           </Link>

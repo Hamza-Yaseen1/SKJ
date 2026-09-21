@@ -5,7 +5,7 @@ import Link from "next/link";
 import { ArrowRight, Minus, Plus, X } from "lucide-react";
 import Reveal from "@/components/Reveal";
 import { useCart } from "@/components/providers/CartProvider";
-import { formatPrice } from "@/lib/products";
+import { formatPrice, getProductUrl } from "@/lib/products";
 
 export default function CartView() {
   const { items, count, subtotal, hydrated, updateQuantity, removeItem } = useCart();
@@ -55,7 +55,7 @@ export default function CartView() {
           </p>
           </Reveal>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-x-8 gap-y-5">
-            <Link href="/shop" className="btn btn-gold">
+            <Link href="/all-perfumes" className="btn btn-gold">
               Browse the collection
               <ArrowRight size={14} strokeWidth={1.5} aria-hidden="true" />
             </Link>
@@ -105,7 +105,7 @@ export default function CartView() {
                 <li key={`${product.slug}:${size.id}`} className="group flex gap-5 py-8 md:gap-8 md:py-9">
                   {/* Thumbnail */}
                   <Link
-                    href={`/product/${product.slug}`}
+                    href={getProductUrl(product.slug)}
                     className="relative aspect-4/5 w-24 shrink-0 overflow-hidden bg-sand md:w-28"
                     aria-label={`View ${product.name}`}
                   >
@@ -124,7 +124,7 @@ export default function CartView() {
                     <div className="flex items-start justify-between gap-4">
                       <div>
                         <Link
-                          href={`/product/${product.slug}`}
+                          href={getProductUrl(product.slug)}
                           className="font-serif text-lg leading-snug text-ink transition-colors hover:text-gold"
                         >
                           {product.name}
@@ -217,7 +217,7 @@ export default function CartView() {
             </div>
 
             <div className="pt-6 text-center">
-              <Link href="/shop" className="text-link">
+              <Link href="/all-perfumes" className="text-link">
                 Continue shopping
               </Link>
             </div>

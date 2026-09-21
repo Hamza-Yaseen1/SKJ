@@ -13,6 +13,25 @@ const nextConfig: NextConfig = {
     // (75 default, 85 hero, 80 product) so they aren't coerced to 75.
     qualities: [50, 75, 80, 85, 100],
   },
+  async redirects() {
+    return [
+      {
+        source: "/deals",
+        destination: "/perfume-deals",
+        permanent: true,
+      },
+      {
+        source: "/shop",
+        destination: "/all-perfumes",
+        permanent: true,
+      },
+      {
+        source: "/product/yakoot",
+        destination: "/product/yakoot-perfume",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

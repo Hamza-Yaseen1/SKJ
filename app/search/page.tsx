@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   title: "Search the Collection | SKJ Pure Presence",
   description:
     "Search the SKJ Pure Presence collection — extraits de parfum composed and hand-filled in Pakistan.",
-  alternates: { canonical: "/shop" },
+  alternates: { canonical: "/all-perfumes" },
   robots: { index: false, follow: true },
 };
 
@@ -95,7 +95,7 @@ export default async function SearchPage({ searchParams }: SearchProps) {
 
           {query && results.length === 0 && (
             <div className="mt-20 border-t border-ink/10 pt-12 text-center">
-              <Link href="/shop" className="text-link">
+              <Link href="/all-perfumes" className="text-link">
                 Browse the full collection instead
                 <ArrowUpRight size={14} strokeWidth={1.5} aria-hidden="true" />
               </Link>

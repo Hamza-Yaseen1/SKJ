@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Product } from "@/lib/products";
-import { formatPrice, getDefaultSize } from "@/lib/products";
+import { formatPrice, getDefaultSize, getProductUrl } from "@/lib/products";
 
 /**
  * Portrait product card used across the home, shop and related-products
@@ -17,7 +17,7 @@ export default function ProductCard({ product }: { product: Product }) {
   return (
     <article className="group">
       <Link
-        href={`/product/${product.slug}`}
+        href={getProductUrl(product.slug)}
         className="block focus-visible:outline-offset-4"
         aria-label={`${product.name} — from ${formatPrice(price)}`}
       >

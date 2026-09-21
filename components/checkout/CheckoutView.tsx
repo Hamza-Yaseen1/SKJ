@@ -131,7 +131,7 @@ export default function CheckoutView() {
             complete your order.
           </p>
           </Reveal>
-          <Link href="/shop" className="btn btn-gold mt-10">
+          <Link href="/all-perfumes" className="btn btn-gold mt-10">
             Browse the collection
           </Link>
         </div>
