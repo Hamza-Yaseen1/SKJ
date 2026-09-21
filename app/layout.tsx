@@ -23,17 +23,18 @@ const geist = Geist({
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.siteUrl),
   title: {
-    default: "SKJ Pure Presence | Best Perfume in Karachi, Pakistan",
+    default: "SKJ Pure Presence Perfume| Best Perfume in Karachi, Pakistan",
     template: "%s · SKJ Pure Presence",
   },
   description:
-    "SKJ Pure Presence composes hand-filled extraits de parfum in Pakistan. Refillable, cruelty-free, 18–25% parfum. Discover the best perfume in Karachi.",
+    "SKJ Pure Presence Perfume composes hand-filled extraits de parfum in Pakistan. Refillable, cruelty-free, 18–25% parfum. Discover the best perfume in Karachi.",
   verification: {
     google: "1wCaCw0Baxwm7b66ENrWLef7lQFMlVfr4XMxb_0QQek",
   },
   keywords: [
     "SKJ Pure Presence",
     "SKJ Pure Presence Perfume",
+    "SKJ Perfume",
     "best perfume in Karachi",
     "luxury perfume Pakistan",
     "extrait de parfum",
@@ -51,14 +52,14 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_PK",
     url: "/",
-    siteName: "SKJ Pure Presence",
+    siteName: "SKJ Pure Presence Perfume",
     title: "SKJ Pure Presence Perfume| Best Perfume in Karachi, Pakistan",
     description:
       "Hand-filled extraits de parfum composed in Pakistan — refillable, cruelty-free, 18–25% parfum. The best perfume in Karachi.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "SKJ Pure Presence | Best Perfume in Karachi, Pakistan",
+    title: "SKJ Pure Presence Perfume| Best Perfume in Karachi, Pakistan",
     description:
       "Hand-filled extraits de parfum composed in Pakistan — refillable, cruelty-free, 18–25% parfum.",
   },
