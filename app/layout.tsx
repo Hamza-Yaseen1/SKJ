@@ -33,6 +33,7 @@ export const metadata: Metadata = {
   },
   keywords: [
     "SKJ Pure Presence",
+    "SKJ Pure Presence Perfume",
     "best perfume in Karachi",
     "luxury perfume Pakistan",
     "extrait de parfum",
@@ -51,7 +52,7 @@ export const metadata: Metadata = {
     locale: "en_PK",
     url: "/",
     siteName: "SKJ Pure Presence",
-    title: "SKJ Pure Presence | Best Perfume in Karachi, Pakistan",
+    title: "SKJ Pure Presence Perfume| Best Perfume in Karachi, Pakistan",
     description:
       "Hand-filled extraits de parfum composed in Pakistan — refillable, cruelty-free, 18–25% parfum. The best perfume in Karachi.",
   },
