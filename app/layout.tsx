@@ -29,6 +29,9 @@ export const metadata: Metadata = {
     google: "1wCaCw0Baxwm7b66ENrWLef7lQFMlVfr4XMxb_0QQek",
   },
   keywords: [
+    "skj perfume",
+    "skj fragrances",
+    "skj fragrance",
     "SKJ Pure Presence",
     "SKJ Pure Presence Perfume",
     "SKJ Perfume",
