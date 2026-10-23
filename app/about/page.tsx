@@ -59,7 +59,7 @@ export default function About() {
         <div className="container-luxe grid items-center gap-14 py-20 md:grid-cols-2 md:gap-16 md:py-28">
           <Reveal className="md:pr-8">
             <p className="eyebrow mb-6">Est. 2026</p>
-            <div className="space-y-7 text-base leading-8 text-bark">
+            <div className="space-y-10 text-base leading-8 text-bark">
               <p>
                 “Perfume is the only accessory you can never take off.” The
                 sentence sat half-finished on an atelier wall in Pakistan for

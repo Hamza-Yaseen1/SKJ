@@ -33,14 +33,18 @@ function parseMessage(payload: ContactPayload): {
 }
 
 export async function POST(request: Request) {
-  let payload: ContactPayload;
+  let payload: unknown;
   try {
-    payload = (await request.json()) as ContactPayload;
+    payload = await request.json();
   } catch {
     return Response.json({ error: "Invalid request body." }, { status: 400 });
   }
 
-  const { contact, error } = parseMessage(payload);
+  if (payload === null || typeof payload !== "object" || Array.isArray(payload)) {
+    return Response.json({ error: "Invalid request body." }, { status: 400 });
+  }
+
+  const { contact, error } = parseMessage(payload as ContactPayload);
   if (!contact) {
     return Response.json({ error }, { status: 400 });
   }

@@ -44,7 +44,7 @@ export default function Shop() {
     <>
       {/* ── Intro ── */}
       <section className="bg-cream">
-        <div className="container-luxe pt-10 pb-16 text-center md:pt-28 md:pb-20">
+        <div className="container-luxe  text-center  md:pb-20">
           <Reveal>
             <div aria-hidden="true" className="mx-auto flex items-center gap-5">
               <span className="h-px w-12 bg-gold/40" />
@@ -57,7 +57,7 @@ export default function Shop() {
               <br />
               <em className="italic text-gold">one house.</em>
             </h1>
-            <p className="mx-auto mt-8 text-base leading-8 text-bark">
+            <p className="mx-auto mt-8 text-base leading-8 text-bark md:text-lgsm:text-sm">
               Searching for the best perfume in Pakistan with price is a sensible
               place to begin. The answer here is rarely one classic — it is the
               extrait that keeps you honest about how long you want it to last.
@@ -69,22 +69,14 @@ export default function Shop() {
               priced deliberately: the price is the quietest part of the
               decision. Written to, hopefully, be kept.
             </p>
-            <p className="mx-auto mt-6 text-md leading-10 text-bark">
-              Sometimes described as the best perfume in Pakistan with price,
-              and other times simply as the long lasting perfume in Pakistan —
-              the six compositions below carry both claims lightly. Prices are
-              fixed in PKR and published on every card, from Rs. 800 for a
-              10&nbsp;ml tester to Rs. 2,000 for a reusable 50&nbsp;ml flacon.
-              Free shipping across Lahore, Karachi, Islamabad, Rawalpindi,
-              Faisalabad and Multan.
-            </p>
+          
           </Reveal>
         </div>
       </section>
 
       {/* ── Grid ── */}
       <section className="bg-cream">
-        <div className="container-luxe py-16 md:py-24">
+        <div className="container-luxe ">
           <div className="mb-14 flex items-center gap-6">
             <span aria-hidden="true" className="h-px w-8 bg-gold/50" />
             <p className="text-[11px] uppercase tracking-[0.16em] text-stone">
@@ -105,6 +97,16 @@ export default function Shop() {
             <p className="text-[11px] uppercase tracking-[0.16em] text-stone">
               Six compositions — the archive closes here
             </p>
+              <p className="mx-auto mt-6 text-base leading-10 text-bark">
+              Sometimes described as the best perfume in Pakistan with price,
+              and other times simply as the long lasting perfume in Pakistan —
+              the six compositions below carry both claims lightly. Prices are
+              fixed in PKR and published on every card, from Rs. 800 for a
+              10&nbsp;ml tester to Rs. 2,000 for a reusable 50&nbsp;ml flacon.
+              Free shipping across Lahore, Karachi, Islamabad, Rawalpindi,
+              Faisalabad and Multan.
+            </p>
+            <br /><br />
           </div>
         </div>
       </section>

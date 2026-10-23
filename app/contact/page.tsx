@@ -46,21 +46,7 @@ export default function Contact() {
               Guidance, press, private commissions or simply a hello — every
               letter is read by a human who can smell the difference.
             </p>
-            <p className="mx-auto mt-6 max-w-3xl text-base leading-8 text-bark">
-              Welcome to the SKJ atelier. Whether you are looking for fragrance recommendations,
-              need help with an order, or want to ask a question before choosing your next scent,
-              we are here to guide you with thoughtful, personal answers. We aim to reply within
-              one working day and can assist with product guidance, shipping questions, and private
-              commissions. If you are unsure where to begin, send a note and we will help you find
-              the right fragrance for your occasion, collection, or gifting needs.
-            </p>
-            <p className="mx-auto mt-6 max-w-3xl text-base leading-8 text-bark">
-              You can reach us through the form on this page or by writing directly to the atelier.
-              When asking about an existing purchase, include your order number and the fragrance
-              or delivery detail you are referring to. For recommendations, tell us about the
-              notes, moods, or occasions you usually enjoy; a little context helps us make a more
-              thoughtful suggestion. Every message is answered within one working day.
-            </p>
+            
           </Reveal>
         </div>
       </section>
@@ -119,7 +105,23 @@ export default function Contact() {
                         )}
                       </a>
                     </li>
+                    
                   ))}
+                   <p className="mx-auto mt-6 max-w-3xl text-base leading-8 text-bark">
+              Welcome to the SKJ atelier. Whether you are looking for fragrance recommendations,
+              need help with an order, or want to ask a question before choosing your next scent,
+              we are here to guide you with thoughtful, personal answers. We aim to reply within
+              one working day and can assist with product guidance, shipping questions, and private
+              commissions. If you are unsure where to begin, send a note and we will help you find
+              the right fragrance for your occasion, collection, or gifting needs.
+            </p>
+            <p className="mx-auto mt-6 max-w-3xl text-base leading-8 text-bark">
+              You can reach us through the form on this page or by writing directly to the atelier.
+              When asking about an existing purchase, include your order number and the fragrance
+              or delivery detail you are referring to. For recommendations, tell us about the
+              notes, moods, or occasions you usually enjoy; a little context helps us make a more
+              thoughtful suggestion. Every message is answered within one working day.
+            </p>
                 </ul>
               </div>
 

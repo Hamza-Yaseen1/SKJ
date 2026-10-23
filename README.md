@@ -69,7 +69,7 @@ collection, choose a size, add a fragrance to their bag, and complete an order.
 - Persistent cart state with quantity controls and order summary
 - Checkout and order confirmation flows
 - Contact and newsletter touchpoints for guidance, press, and atelier enquiries
-- Optional Brevo email notifications for completed orders
+- Optional Resend email notifications for completed orders
 - Responsive, accessible layouts with a restrained editorial visual system
 
 ## Technology
@@ -78,7 +78,7 @@ collection, choose a size, add a fragrance to their bag, and complete an order.
 - [React](https://react.dev/) 19 and TypeScript
 - [Tailwind CSS](https://tailwindcss.com/) 4
 - [Lucide](https://lucide.dev/) icons
-- [Brevo](https://www.brevo.com/) for transactional email
+- [Resend](https://resend.com/) for transactional email
 - Next Image and `next/font` for optimized media and typography
 
 ## Run Locally
@@ -117,12 +117,12 @@ cp .env.example .env.local
 | Variable | Purpose |
 | --- | --- |
 | `NEXT_PUBLIC_SITE_URL` | Canonical URL for SEO and Open Graph metadata. |
-| `BREVO_API_KEY` | Brevo API key for order emails. Optional in dry-run mode. |
+| `RESEND_API_KEY` | Resend API key for order emails. Optional in dry-run mode. |
 | `EMAIL_FROM` | Verified sender address for transactional email. |
 | `OWNER_EMAIL` | Inbox for new-order notifications. |
 | `EMAIL_DRY_RUN` | Set to `true` to test checkout without sending email. |
 
-The storefront remains usable without Brevo credentials; order email delivery
+The storefront remains usable without Resend credentials; order email delivery
 is skipped until the provider is configured.
 
 ## Project Shape
@@ -132,7 +132,7 @@ app/                 Pages, layouts, checkout API, and route handlers
 components/          Shared storefront, cart, checkout, and form components
 lib/products.ts      Product catalogue and collection accessors
 lib/orders.ts        Order validation and order resolution
-lib/emails.ts        Brevo integration and email delivery
+lib/emails.ts        Resend integration and email delivery
 public/Images/       Local brand and product imagery
 DESIGN_SYSTEM.md     Visual direction and quality rules for the house
 ```

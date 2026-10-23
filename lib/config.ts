@@ -24,9 +24,9 @@ export const siteConfig = {
   /** Where order notifications are delivered to the store owner. */
   ownerEmail: process.env.OWNER_EMAIL ?? "atelier@skjpurepresence.com",
 
-  /** Brevo (formerly Sendinblue) API key. When unset, email sending is skipped (order still succeeds). */
-  brevoApiKey: process.env.BREVO_API_KEY,
+  /** Resend API key. When unset, email sending is skipped (order still succeeds). */
+  resendApiKey: process.env.RESEND_API_KEY,
 
-  /** Local/testing shortcut — fake-sends emails without touching Brevo. */
+  /** Local/testing shortcut — fake-sends emails without touching Resend. */
   emailDryRun: process.env.EMAIL_DRY_RUN === "true",
 } as const;

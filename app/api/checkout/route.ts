@@ -11,6 +11,10 @@ export async function POST(request: Request) {
     return Response.json({ error: "Invalid request body." }, { status: 400 });
   }
 
+  if (payload === null || typeof payload !== "object" || Array.isArray(payload)) {
+    return Response.json({ error: "Invalid request body." }, { status: 400 });
+  }
+
   let order;
   try {
     order = resolveOrder(payload);

@@ -10,8 +10,9 @@ const nextConfig: NextConfig = {
     formats: ["image/avif", "image/webp"],
     minimumCacheTTL: 2678400,
     // Silence dev warnings and allow the qualities used in the codebase
-    // (75 default, 85 hero, 80 product) so they aren't coerced to 75.
-    qualities: [50, 75, 80, 85, 100],
+    // (70 checkout, 75 cart, 80 cards, 82 hero, 85 product/deals) so they
+    // aren't coerced to 75.
+    qualities: [50, 70, 75, 80, 82, 85, 100],
   },
   async redirects() {
     return [

@@ -86,9 +86,11 @@ export default function ProductPurchase({ product }: { product: Product }) {
             );
           })}
         </div>
-        <p className="mt-4 text-xs leading-6 text-stone">
-          Both sizes are refillable — keep your flacon, replenish the essence.
-        </p>
+        {product.sizes.length > 1 && (
+          <p className="mt-4 text-xs leading-6 text-stone">
+            Both sizes are refillable — keep your flacon, replenish the essence.
+          </p>
+        )}
       </fieldset>
 
       <div className="mt-9">
