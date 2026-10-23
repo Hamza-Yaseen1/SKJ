@@ -5,6 +5,7 @@ import { siteConfig } from "@/lib/config";
 import { CartProvider } from "@/components/providers/CartProvider";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { cn } from "@/lib/utils";
 
 const playfair = Playfair_Display({
   variable: "--font-serif",
@@ -14,11 +15,7 @@ const playfair = Playfair_Display({
   display: "swap",
 });
 
-const geist = Geist({
-  variable: "--font-sans",
-  subsets: ["latin"],
-  display: "swap",
-});
+const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.siteUrl),
@@ -83,7 +80,7 @@ export default function RootLayout({
     <html
       lang="en"
       data-scroll-behavior="smooth"
-      className={`${playfair.variable} ${geist.variable} h-full`}
+      className={cn("h-full", playfair.variable, "font-sans", geist.variable)}
     >
       <body className="flex min-h-dvh flex-col bg-cream font-sans text-ink antialiased">
         <CartProvider>

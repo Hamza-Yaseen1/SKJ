@@ -8,9 +8,42 @@ const EXPLORE_LINKS = [
 ];
 
 const SOCIAL_LINKS = [
-  // TODO: add the real Instagram / Pinterest profile URLs once the brand
-  // accounts exist. Generic homepage URLs were removed so the footer never
-  // links visitors to a placeholder page.
+  {
+    label: "Facebook",
+    href: "https://www.facebook.com/skjpurepresence",
+    icon: (
+      <svg viewBox="0 0 24 24" className="h-[18px] w-[18px]" fill="currentColor" aria-hidden="true">
+        <path d="M13.4 21v-8.2h2.8l.4-3.2h-3.2v-2c0-.9.3-1.6 1.6-1.6h1.7V3.1c-.3 0-1.4-.1-2.7-.1-2.7 0-4.5 1.6-4.5 4.6v2H6.7v3.2h2.8V21h3.9Z" />
+      </svg>
+    ),
+  },
+  {
+    label: "Instagram",
+    href: "https://www.instagram.com/skjpurepresence",
+    icon: (
+      <svg
+        viewBox="0 0 24 24"
+        className="h-[18px] w-[18px]"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.7"
+        aria-hidden="true"
+      >
+        <rect x="3.5" y="3.5" width="17" height="17" rx="5" />
+        <circle cx="12" cy="12" r="4" />
+        <circle cx="17.7" cy="6.5" r="1" fill="currentColor" stroke="none" />
+      </svg>
+    ),
+  },
+  {
+    label: "TikTok",
+    href: "https://www.tiktok.com/@skjpurepresence",
+    icon: (
+      <svg viewBox="0 0 24 24" className="h-[18px] w-[18px]" fill="currentColor" aria-hidden="true">
+        <path d="M19.6 8.1a7.2 7.2 0 0 1-4.3-1.4v7.1a5.5 5.5 0 1 1-4.7-5.4v3.7a1.9 1.9 0 1 0 1.1 1.7V2.5h3.6c.2 2.2 1.8 3.9 4.3 4.1v1.5Z" />
+      </svg>
+    ),
+  },
   {
     label: "Email",
     href: "mailto:atelier@skjpurepresence.com",
@@ -40,10 +73,10 @@ export default function Footer() {
                 <a
                   key={social.label}
                   href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  target={social.href.startsWith("https://") ? "_blank" : undefined}
+                  rel={social.href.startsWith("https://") ? "noopener noreferrer" : undefined}
                   aria-label={social.label}
-                  className="flex h-10 w-10 items-center justify-center rounded-sm border border-white/10 text-cream/70 transition-colors hover:border-gold-light hover:text-gold-light"
+                  className="flex h-11 w-11 items-center justify-center rounded-sm border border-white/10 text-cream/70 transition-colors hover:border-gold-light hover:text-gold-light"
                 >
                   {social.icon}
                 </a>

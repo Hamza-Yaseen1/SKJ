@@ -1,10 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import {useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, ShoppingBag, X } from "lucide-react";
 import { useCart } from "@/components/providers/CartProvider";
+import { AnnouncementBar } from "./AnnouncementBar";
 
 const NAV_LINKS = [
   { label: "Home", href: "/" },
@@ -19,11 +20,16 @@ export default function Header() {
   const [open, setOpen] = useState(false);
   const { count } = useCart();
 
+
   const isActive = (href: string) =>
     href === "/" ? pathname === "/" : pathname.startsWith(href);
 
   return (
+
+    <> 
+
     <header className="sticky top-0 z-50 border-b border-white/10 bg-ink/95 backdrop-blur-md">
+    <AnnouncementBar/>
       <div className="container-luxe flex h-16 items-center justify-between md:h-20">
         {/* Wordmark */}
         <Link
@@ -121,5 +127,7 @@ export default function Header() {
         </nav>
       )}
     </header>
+
+    </>
   );
 }
