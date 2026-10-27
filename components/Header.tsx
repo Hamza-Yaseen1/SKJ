@@ -109,17 +109,12 @@ export default function Header() {
                 <Link
                   href={link.href}
                   onClick={() => setOpen(false)}
-                  className={`flex items-baseline justify-between font-serif text-2xl tracking-wide ${
+                  className={`flex items-baseline justify-between  text-xl tracking-wide ${
                     isActive(link.href) ? "text-gold-light italic" : "text-cream"
                   }`}
                 >
                   {link.label}
-                  <span
-                    aria-hidden="true"
-                    className="font-sans text-[10px] uppercase tracking-[0.3em] text-cream/30"
-                  >
-                    {link.href === "/" ? "Index" : link.href.slice(1)}
-                  </span>
+                  
                 </Link>
               </li>
             ))}
