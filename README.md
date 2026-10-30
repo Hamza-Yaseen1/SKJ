@@ -155,6 +155,6 @@ npm run build
 ## Contact the Atelier
 
 For fragrance guidance, press, private commissions, or a considered beginning,
-write to [atelier@skjpurepresence.com](mailto:atelier@skjpurepresence.com).
+write to [skj.purepresence@gmail.com](mailto:skj.purepresence@gmail.com).
 
 SKJ Pure Presence is composed in Grasse and made for presence, not noise.

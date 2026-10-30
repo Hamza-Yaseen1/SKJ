@@ -169,6 +169,10 @@
   color: var(--color-gold);
 }
 
+.eyebrow-on-light {
+  color: var(--color-bark);
+}
+
 /* Eyebrow variant for dark backgrounds — overrides the gold above. */
 .eyebrow-on-dark {
   color: var(--color-gold-light);

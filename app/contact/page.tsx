@@ -14,8 +14,8 @@ export const metadata: Metadata = {
 const DETAILS = [
   {
     label: "Write to us",
-    value: "atelier@skjpurepresence.com",
-    href: "mailto:atelier@skjpurepresence.com",
+    value: "skj.purepresence@gmail.com",
+    href: "mailto:skj.purepresence@gmail.com",
   },
   {
     label: "The atelier",

@@ -88,7 +88,7 @@ Implemented in `app/page.tsx` (homepage) and `app/product/[slug]/page.tsx`.
       "name": "SKJ Pure Presence",
       "url": "https://skj-pure-presence.vercel.app",
       "logo": "https://skj-pure-presence.vercel.app/icon.svg",
-      "email": "atelier@skjpurepresence.com",
+      "email": "skj.purepresence@gmail.com",
       "slogan": "The quietest form of power",
       "foundingDate": "2026",
       "address": {
@@ -105,7 +105,7 @@ Implemented in `app/page.tsx` (homepage) and `app/product/[slug]/page.tsx`.
       "@id": "https://skj-pure-presence.vercel.app/#store",
       "name": "SKJ Pure Presence",
       "url": "https://skj-pure-presence.vercel.app",
-      "email": "atelier@skjpurepresence.com",
+      "email": "skj.purepresence@gmail.com",
       "priceRange": "Rs. 800 – Rs. 2,000",
       "currenciesAccepted": "PKR",
       "areaServed": ["Pakistan", "Karachi"],
@@ -244,7 +244,7 @@ Implemented on the homepage as accessible `<details>`/`<summary>` markup + mirro
 
 | # | Question | Answer (summary) |
 | --- | --- | --- |
-| 1 | Where to buy SKJ Pure Presence in Karachi? | Directly on the site with complimentary shipping across Clifton, DHA, Zamzama and Gulberg. The Karachi atelier is open by appointment, Thursday–Saturday. Write to atelier@skjpurepresence.com. |
+| 1 | Where to buy SKJ Pure Presence in Karachi? | Directly on the site with complimentary shipping across Clifton, DHA, Zamzama and Gulberg. The Karachi atelier is open by appointment, Thursday–Saturday. Write to skj.purepresence@gmail.com. |
 | 2 | Is SKJ perfume better than j. perfumes? | Better is taste; the difference is measurable. J. Perfumes is affordable eau de parfum at volume; SKJ is a small-batch extraction house — 18–25% parfum, hand-filled, refillable, cruelty-free. |
 | 3 | What is the price of SKJ extrait de parfum in Pakistan? | 30 ml Rs. 1,200 · 50 ml Rs. 2,000 · 10 ml tester Rs. 800. All PKR, shipping complimentary, no payment taken online — order confirmed by email. |
 | 4 | Which is the best luxury perfume for men in Pakistan? | Ghazi (oud/smoke/leather), Yaqoot (cedar/oud/saffron), Legend (amber/rose) — all 18–25% extrait de parfum, hand-filled in Karachi. |

@@ -49,7 +49,7 @@ const PRACTICES: Array<[string, string]> = [
 const FAQ_QUESTIONS: Array<{ q: string; a: string }> = [
   {
     q: "Where to buy SKJ Pure Presence in Karachi?",
-    a: "Directly on this website, with complimentary shipping across Karachi — Clifton, DHA, Zamzama and Gulberg included. The atelier in Karachi also welcomes visits by appointment, Thursday to Saturday. For guidance before you buy, write to atelier@skjpurepresence.com.",
+    a: "Directly on this website, with complimentary shipping across Karachi — Clifton, DHA, Zamzama and Gulberg included. The atelier in Karachi also welcomes visits by appointment, Thursday to Saturday. For guidance before you buy, write to skj.purepresence@gmail.com.",
   },
   {
     q: "Is SKJ perfume better than j. perfumes?",
@@ -171,7 +171,7 @@ export default function Home() {
         name: "SKJ Pure Presence",
         url: site,
         logo: `${site}/icon.svg`,
-        email: "atelier@skjpurepresence.com",
+        email: "skj.purepresence@gmail.com",
         slogan: "The quietest form of power",
         foundingDate: "2026",
         address: {
@@ -190,7 +190,7 @@ export default function Home() {
         name: "SKJ Pure Presence",
         url: site,
         image: `${site}/icon.svg`,
-        email: "atelier@skjpurepresence.com",
+        email: "skj.purepresence@gmail.com",
         priceRange: "Rs. 800 – Rs. 2,000",
         currenciesAccepted: "PKR",
         areaServed: ["Pakistan", "Karachi"],

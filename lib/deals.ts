@@ -36,15 +36,7 @@ export interface Deal {
 // =================================================================
 //  LIVE DEAL  (only one may be active — keep the rest commented out)
 // =================================================================
-export const activeDeal: Deal | null = {
-  type: "bogo",
-  title: "Buy 1 Get 1 Free",
-  description:
-    "Buy any 100 ml extrait and receive a 50 ml of your choice, free.",
-  image: "/Images/yakoot/yakoot.jpg",
-  buttonText: "Shop Now",
-  link: "/all-perfumes",
-};
+export const activeDeal: Deal | null = null;
 
 /* =================================================================
    ALTERNATE DEAL TEMPLATES

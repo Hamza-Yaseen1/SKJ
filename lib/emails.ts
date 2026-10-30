@@ -103,7 +103,7 @@ function lightShell(inner: string): string {
           <tr>
             <td style="padding:28px 48px;border-top:1px solid ${SAND};" bgcolor="#f2ecdf">
               <p style="margin:0;font-family:${SANS};font-size:11px;line-height:1.8;color:${BARK};text-align:center;">Hand-filled in Pakistan &middot; Refillable flacon &middot;<br />
-              <span style="color:${GOLD};">atelier@skjpurepresence.com</span></p>
+              <span style="color:${GOLD};">skj.purepresence@gmail.com</span></p>
             </td>
           </tr>
         </table>

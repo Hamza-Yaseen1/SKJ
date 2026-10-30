@@ -130,10 +130,10 @@ export default function Shop() {
               three considered suggestions, tailored to the way you live.
             </p>
             <a
-              href="mailto:atelier@skjpurepresence.com?subject=A%20quiet%20hour%20to%20begin"
+              href="mailto:skj.purepresence@gmail.com?subject=A%20quiet%20hour%20to%20begin"
               className="text-link mt-10"
             >
-              atelier@skjpurepresence.com
+              skj.purepresence@gmail.com
               <ArrowUpRight size={14} strokeWidth={1.5} aria-hidden="true" />
             </a>
             <p className="mt-7 text-[11px] uppercase tracking-[0.16em] text-stone">

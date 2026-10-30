@@ -46,7 +46,7 @@ const SOCIAL_LINKS = [
   },
   {
     label: "Email",
-    href: "mailto:atelier@skjpurepresence.com",
+    href: "mailto:skj.purepresence@gmail.com",
     icon: <Mail size={18} strokeWidth={1.5} aria-hidden="true" />,
   },
 ];
@@ -112,19 +112,16 @@ export default function Footer() {
               <p className="flex items-start gap-3">
                 <MapPin size={16} strokeWidth={1.25} className="mt-1.5 shrink-0 text-gold/70" />
                 <span>
-                  SKJ House
-                  <br />
-                  48 Gulberg Avenue
-                  <br />
+                  
                   Karachi, Pakistan
                 </span>
               </p>
               <a
-                href="mailto:atelier@skjpurepresence.com"
+                href="mailto:skj.purepresence@gmail.com"
                 className="inline-flex items-center gap-3 transition-colors hover:text-gold-light"
               >
                 <span aria-hidden="true" className="h-px w-4 shrink-0 bg-gold/50" />
-                atelier@skjpurepresence.com
+                skj.purepresence@gmail.com
               </a>
             </div>
           </div>

@@ -37,7 +37,7 @@ export default function CartPage() {
               before it leaves the atelier. When you are ready, continue to
               checkout to review your details. If you need help choosing a
               composition, changing an order, or understanding delivery,
-              contact the atelier at atelier@skjpurepresence.com and we will be
+              contact the atelier at skj.purepresence@gmail.com and we will be
               glad to help.
             </p>
             <p className="mt-5">

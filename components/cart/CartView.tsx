@@ -60,7 +60,7 @@ export default function CartView() {
               <ArrowRight size={14} strokeWidth={1.5} aria-hidden="true" />
             </Link>
             <Link
-              href="mailto:atelier@skjpurepresence.com"
+              href="mailto:skj.purepresence@gmail.com"
               className="text-link"
             >
               Write to the atelier

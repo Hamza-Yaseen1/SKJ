@@ -22,7 +22,7 @@ export const siteConfig = {
   emailFrom: process.env.EMAIL_FROM ?? "SKJ Pure Presence <orders@skjpurepresence.com>",
 
   /** Where order notifications are delivered to the store owner. */
-  ownerEmail: process.env.OWNER_EMAIL ?? "atelier@skjpurepresence.com",
+  ownerEmail: process.env.OWNER_EMAIL ?? "skj.purepresence@gmail.com",
 
   /** Resend API key. When unset, email sending is skipped (order still succeeds). */
   resendApiKey: process.env.RESEND_API_KEY,

@@ -154,7 +154,7 @@ export const products: Product[] = [
     family: "Oriental",
     concentration: "Eau de Parfum",
     sizes: [
-      { id: "10ml", label: "10 ml", price: 800 },
+      { id: "10ml", label: "10 ml", price: 1200 },
     ],
     projection: "Subtle",
     description:
